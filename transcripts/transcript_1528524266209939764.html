@@ -1,0 +1,950 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Transcript – #sempa</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            * { margin:0; padding:0; box-sizing:border-box; }
+            body {
+                font-family: 'Inter', sans-serif;
+                background: #0e1a24;
+                color: #d4dce4;
+                padding: 20px;
+                line-height: 1.5;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .container {
+                max-width: 1000px;
+                width: 100%;
+                background: #15222e;
+                border-radius: 16px;
+                padding: 30px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+                border: 1px solid #2a3c4a;
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                padding-bottom: 16px;
+                margin-bottom: 24px;
+                border-bottom: 2px solid #2a3c4a;
+            }
+            .header-left h1 {
+                font-size: 24px;
+                font-weight: 700;
+                color: #f0f4f8;
+                letter-spacing: -0.5px;
+            }
+            .header-left .sub {
+                font-size: 14px;
+                color: #8aa4b4;
+                margin-top: 2px;
+            }
+            .header-right {
+                text-align: right;
+                font-size: 13px;
+                color: #8aa4b4;
+            }
+            .header-right strong {
+                color: #f0f4f8;
+            }
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 12px;
+                background: #0e1a24;
+                padding: 16px 20px;
+                border-radius: 12px;
+                margin-bottom: 24px;
+                border: 1px solid #2a3c4a;
+            }
+            .info-grid .item {
+                display: flex;
+                flex-direction: column;
+            }
+            .info-grid .label {
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.4px;
+                color: #6a8a9a;
+                font-weight: 600;
+            }
+            .info-grid .value {
+                font-weight: 500;
+                color: #f0f4f8;
+                word-break: break-word;
+                margin-top: 2px;
+            }
+            .info-grid .value a {
+                color: #8fc1d9;
+                text-decoration: none;
+            }
+            .info-grid .value a:hover {
+                text-decoration: underline;
+            }
+            .users-section {
+                background: #0e1a24;
+                padding: 12px 20px;
+                border-radius: 12px;
+                margin-bottom: 24px;
+                border: 1px solid #2a3c4a;
+            }
+            .users-section h3 {
+                font-size: 14px;
+                font-weight: 600;
+                color: #8aa4b4;
+                margin-bottom: 6px;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+            }
+            .users-section ul {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 18px;
+            }
+            .users-section ul li {
+                font-size: 13px;
+            }
+            .messages {
+                max-height: 650px;
+                overflow-y: auto;
+                background: #0a161f;
+                border-radius: 12px;
+                padding: 4px 0;
+                border: 1px solid #2a3c4a;
+            }
+            .msg {
+                display: flex;
+                gap: 12px;
+                padding: 10px 16px;
+                transition: background 0.1s;
+                align-items: flex-start;
+            }
+            .msg:hover {
+                background: #1a2c3a;
+            }
+            .avatar-img {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+            .msg-content {
+                flex: 1;
+                min-width: 0;
+            }
+            .msg-header {
+                display: flex;
+                align-items: baseline;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin-bottom: 2px;
+            }
+            .author {
+                font-weight: 600;
+                font-size: 15px;
+            }
+            .ts {
+                font-size: 11px;
+                color: #6a8a9a;
+                font-family: 'JetBrains Mono', monospace;
+            }
+            .text {
+                font-size: 14px;
+                word-break: break-word;
+                color: #d4dce4;
+            }
+            .attachment-image {
+                margin-top: 8px;
+            }
+            .attachment-image img {
+                max-width: 400px;
+                max-height: 300px;
+                border-radius: 8px;
+                border: 1px solid #2a3c4a;
+                object-fit: cover;
+            }
+            .attachment-file {
+                margin-top: 8px;
+                background: #0e1a24;
+                padding: 4px 12px;
+                border-radius: 6px;
+                display: inline-block;
+                border: 1px solid #2a3c4a;
+                font-size: 13px;
+            }
+            .attachment-file a {
+                color: #8fc1d9;
+                text-decoration: none;
+            }
+            .attachment-file a:hover {
+                text-decoration: underline;
+            }
+            .embed {
+                background: #0e1a24;
+                border-left: 4px solid #2b2d31;
+                border-radius: 0 8px 8px 0;
+                padding: 10px 14px;
+                margin-top: 10px;
+                max-width: 600px;
+            }
+            .embed-title {
+                font-weight: 600;
+                color: #f0f4f8;
+                margin-bottom: 4px;
+            }
+            .embed-description {
+                font-size: 13px;
+                color: #d4dce4;
+                margin-bottom: 6px;
+                white-space: pre-wrap;
+            }
+            .embed-field {
+                margin-top: 6px;
+            }
+            .embed-field-inline {
+                display: inline-block;
+                margin-right: 16px;
+                margin-top: 6px;
+                vertical-align: top;
+                min-width: 120px;
+            }
+            .embed-field-name {
+                font-weight: 600;
+                color: #f0f4f8;
+                display: block;
+                font-size: 12px;
+            }
+            .embed-field-value {
+                color: #d4dce4;
+                font-size: 13px;
+            }
+            .embed-footer {
+                margin-top: 8px;
+                font-size: 12px;
+                color: #6a8a9a;
+                border-top: 1px solid #2a3c4a;
+                padding-top: 6px;
+            }
+            .footer {
+                margin-top: 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #6a8a9a;
+                border-top: 1px solid #2a3c4a;
+                padding-top: 16px;
+            }
+            .footer strong {
+                color: #f0f4f8;
+            }
+            @media (max-width: 700px) {
+                .container { padding: 16px; }
+                .header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .header-right {
+                    text-align: left;
+                    margin-top: 8px;
+                }
+                .info-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .msg {
+                    flex-wrap: wrap;
+                }
+                .avatar-img {
+                    width: 28px;
+                    height: 28px;
+                }
+                .embed-field-inline {
+                    display: block;
+                    margin-right: 0;
+                }
+                .attachment-image img {
+                    max-width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="header-left">
+                    <h1>Transcript – #sempa</h1>
+                    <div class="sub">BPW - Force Stream • #request-sempa</div>
+                </div>
+                <div class="header-right">
+                    <strong>51</strong> messages<br>
+                    <span style="font-size:11px;">2026-07-19 18:25:36</span>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="item">
+                    <span class="label">Server</span>
+                    <span class="value">BPW - Force Stream</span>
+                </div>
+                <div class="item">
+                    <span class="label">Channel</span>
+                    <span class="value">#request-sempa</span>
+                </div>
+                <div class="item">
+                    <span class="label">Ticket Owner</span>
+                    <span class="value">sw.pe</span>
+                </div>
+                <div class="item">
+                    <span class="label">Panel</span>
+                    <span class="value">Gameplay Request</span>
+                </div>
+                <div class="item">
+                    <span class="label">Match Link</span>
+                    <span class="value"><a href="https://betterplayerwin.com/match/6a5d3b64dc1d8059320ab908" target="_blank">https://betterplayerwin.com/match/6a5d3b…</a></span>
+                </div>
+                <div class="item">
+                    <span class="label">Resolution</span>
+                    <span class="value">Completed</span>
+                </div>
+            </div>
+
+            <div class="users-section">
+                <h3>Users in transcript</h3>
+                <ul>
+                    <li style="color:#8fa146;">BPW Force Stream – 6 messages</li><li style="color:#78076c;">Swipe – 20 messages</li><li style="color:#b7f000;">Sempa – 25 messages</li>
+                </ul>
+            </div>
+
+            <div class="messages">
+                
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-07-19 22:09:44</span>
+                </div>
+                <div class="text">&lt;@1309615592449380416&gt;</div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">Gameplay Request</div><div class="embed-description">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<br>**Requested by**<br>&lt;@1309615592449380416&gt;<br><br>**Player**<br>#sempa<br><br>**Match Link**<br>https://betterplayerwin.com/match/6a5d3b64dc1d8059320ab908<br>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div><div class="embed-field"><span class="embed-field-name">Player Not Found</span><span class="embed-field-value">• No member with that name was found.
+• Please add them manually using the button below.</span></div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-07-19 22:09:47</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">⚠️ Gameplay Requested</div><div class="embed-description">You have **20 minutes** to submit your gameplay.<br><br>**Failure to submit on time will result in a ban.**<br><br>Our staff team will review your submission and determine whether it is valid.<br><br>*Separate monitor cams must be sent via Google Drive, WeTransfer, or Streamable*</div><div class="embed-footer">BetterPlayerWin</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-07-19 22:09:47</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">⏳ Time Remaining</div><div class="embed-description">**4m 16s** left to submit.</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-07-19 22:09:55</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">Users Added</div><div class="embed-description">• &lt;@1245778865687629945&gt;</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:10:00</span>
+                </div>
+                <div class="text">&lt;@1245778865687629945&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:10:02</span>
+                </div>
+                <div class="text">send ur vod</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:10:06</span>
+                </div>
+                <div class="text">for this token https://betterplayerwin.com/match/6a5d3b64dc1d8059320ab908</div>
+        <div class="embed" style="border-left-color:#2b2d31;"><div class="embed-title">Competitive Gaming Tournaments – BetterPlayerWin</div><div class="embed-description">Play Fortnite, FC25, Clash Royale, and Valorant on BetterPlayerWin! Join eSports tournaments and compete on PS4, Xbox, and PC. play tokens.</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:10:22</span>
+                </div>
+                <div class="text">i didnt live that bro</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:10:24</span>
+                </div>
+                <div class="text">because</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:10:28</span>
+                </div>
+                <div class="text">my pc is bad</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:10:32</span>
+                </div>
+                <div class="text">i asked them if they need link</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:10:41</span>
+                </div>
+                <div class="text">they didnt answer</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:11:34</span>
+                </div>
+                <div class="text">i swear</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:11:39</span>
+                </div>
+                <div class="text">i asked them if they need link</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:11:43</span>
+                </div>
+                <div class="text">they didnt answer</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:11:46</span>
+                </div>
+                <div class="text">cmon man</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:12:25</span>
+                </div>
+                <div class="text">&lt;@1309615592449380416&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:12:42</span>
+                </div>
+                <div class="text">its a warning then</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:12:42</span>
+                </div>
+                <div class="text">why did i even get reported for</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:12:46</span>
+                </div>
+                <div class="text">okay</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:12:51</span>
+                </div>
+                <div class="text">2 fs warnings for the same offencer</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:12:53</span>
+                </div>
+                <div class="text">= ban</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:12:56</span>
+                </div>
+                <div class="text">this is ur first warning</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:12:56</span>
+                </div>
+                <div class="text">okay</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:12:58</span>
+                </div>
+                <div class="text">u need to stream</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:12:58</span>
+                </div>
+                <div class="text">ty</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:12:59</span>
+                </div>
+                <div class="text">every token</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:13:03</span>
+                </div>
+                <div class="text">cus ur twitch is linked to ur site acc</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:13:08</span>
+                </div>
+                <div class="text">u dont have to send the link</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:13:10</span>
+                </div>
+                <div class="text">every token</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:13:22</span>
+                </div>
+                <div class="text">does that warning ever delete?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:13:58</span>
+                </div>
+                <div class="text">and do i get win</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:14:00</span>
+                </div>
+                <div class="text">that match</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:14:30</span>
+                </div>
+                <div class="text">the warning does not go</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:14:32</span>
+                </div>
+                <div class="text">but u will get win</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:14:34</span>
+                </div>
+                <div class="text">in the match</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:14:47</span>
+                </div>
+                <div class="text">okay</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:14:48</span>
+                </div>
+                <div class="text">ty</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:15:02</span>
+                </div>
+                <div class="text">i need monitor cam?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:15:17</span>
+                </div>
+                <div class="text">ill see now</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:15:18</span>
+                </div>
+                <div class="text">or can i just live gameplay without cam</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:15:25</span>
+                </div>
+                <div class="text">lemme ask</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:15:32</span>
+                </div>
+                <div class="text">okay</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:24:12</span>
+                </div>
+                <div class="text">so</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:24:13</span>
+                </div>
+                <div class="text">?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1245778865687629945/a2a794af3d0ee7dd7ecfc65032b827c6.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#b7f000;">Sempa</span>
+                    <span class="ts">2026-07-19 22:24:14</span>
+                </div>
+                <div class="text">&lt;@1309615592449380416&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:24:59</span>
+                </div>
+                <div class="text">1 sec</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:25:20</span>
+                </div>
+                <div class="text">reps getting rejected</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1309615592449380416/a_ad56cc96139918956493ac57f9cf596f.gif?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#78076c;">Swipe</span>
+                    <span class="ts">2026-07-19 22:25:22</span>
+                </div>
+                <div class="text">.close</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-07-19 22:25:35</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#2ecc71;"><div class="embed-title">Request Completed – #sempa</div><div class="embed-description">Closed by &lt;@1309615592449380416&gt;</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-07-19 22:25:35</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-description">⏳ Saving transcript...</div></div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="footer">
+                Generated by <strong>BPW Force Stream Bot</strong> • 2026-07-19 18:25:36
+            </div>
+        </div>
+    </body>
+    </html>
+    
