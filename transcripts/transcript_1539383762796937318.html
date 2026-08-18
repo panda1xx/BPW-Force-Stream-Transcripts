@@ -1,0 +1,1645 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Transcript – Askipcheat</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            * { margin:0; padding:0; box-sizing:border-box; }
+            body {
+                font-family: 'Inter', sans-serif;
+                background: #0e1a24;
+                color: #d4dce4;
+                padding: 20px;
+                line-height: 1.5;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .container {
+                max-width: 1000px;
+                width: 100%;
+                background: #15222e;
+                border-radius: 16px;
+                padding: 30px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+                border: 1px solid #2a3c4a;
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                padding-bottom: 16px;
+                margin-bottom: 24px;
+                border-bottom: 2px solid #2a3c4a;
+            }
+            .header-left h1 {
+                font-size: 24px;
+                font-weight: 700;
+                color: #f0f4f8;
+                letter-spacing: -0.5px;
+            }
+            .header-left .sub {
+                font-size: 14px;
+                color: #8aa4b4;
+                margin-top: 2px;
+            }
+            .header-right {
+                text-align: right;
+                font-size: 13px;
+                color: #8aa4b4;
+            }
+            .header-right strong {
+                color: #f0f4f8;
+            }
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 12px;
+                background: #0e1a24;
+                padding: 16px 20px;
+                border-radius: 12px;
+                margin-bottom: 24px;
+                border: 1px solid #2a3c4a;
+            }
+            .info-grid .item {
+                display: flex;
+                flex-direction: column;
+            }
+            .info-grid .label {
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.4px;
+                color: #6a8a9a;
+                font-weight: 600;
+            }
+            .info-grid .value {
+                font-weight: 500;
+                color: #f0f4f8;
+                word-break: break-word;
+                margin-top: 2px;
+            }
+            .info-grid .value a {
+                color: #8fc1d9;
+                text-decoration: none;
+            }
+            .info-grid .value a:hover {
+                text-decoration: underline;
+            }
+            .users-section {
+                background: #0e1a24;
+                padding: 12px 20px;
+                border-radius: 12px;
+                margin-bottom: 24px;
+                border: 1px solid #2a3c4a;
+            }
+            .users-section h3 {
+                font-size: 14px;
+                font-weight: 600;
+                color: #8aa4b4;
+                margin-bottom: 6px;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+            }
+            .users-section ul {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 18px;
+            }
+            .users-section ul li {
+                font-size: 13px;
+            }
+            .messages {
+                max-height: 650px;
+                overflow-y: auto;
+                background: #0a161f;
+                border-radius: 12px;
+                padding: 4px 0;
+                border: 1px solid #2a3c4a;
+            }
+            .msg {
+                display: flex;
+                gap: 12px;
+                padding: 10px 16px;
+                transition: background 0.1s;
+                align-items: flex-start;
+            }
+            .msg:hover {
+                background: #1a2c3a;
+            }
+            .avatar-img {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+            .msg-content {
+                flex: 1;
+                min-width: 0;
+            }
+            .msg-header {
+                display: flex;
+                align-items: baseline;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin-bottom: 2px;
+            }
+            .author {
+                font-weight: 600;
+                font-size: 15px;
+            }
+            .ts {
+                font-size: 11px;
+                color: #6a8a9a;
+                font-family: 'JetBrains Mono', monospace;
+            }
+            .text {
+                font-size: 14px;
+                word-break: break-word;
+                color: #d4dce4;
+            }
+            .attachment-image {
+                margin-top: 8px;
+            }
+            .attachment-image img {
+                max-width: 400px;
+                max-height: 300px;
+                border-radius: 8px;
+                border: 1px solid #2a3c4a;
+                object-fit: cover;
+            }
+            .attachment-file {
+                margin-top: 8px;
+                background: #0e1a24;
+                padding: 4px 12px;
+                border-radius: 6px;
+                display: inline-block;
+                border: 1px solid #2a3c4a;
+                font-size: 13px;
+            }
+            .attachment-file a {
+                color: #8fc1d9;
+                text-decoration: none;
+            }
+            .attachment-file a:hover {
+                text-decoration: underline;
+            }
+            .embed {
+                background: #0e1a24;
+                border-left: 4px solid #2b2d31;
+                border-radius: 0 8px 8px 0;
+                padding: 10px 14px;
+                margin-top: 10px;
+                max-width: 600px;
+            }
+            .embed-title {
+                font-weight: 600;
+                color: #f0f4f8;
+                margin-bottom: 4px;
+            }
+            .embed-description {
+                font-size: 13px;
+                color: #d4dce4;
+                margin-bottom: 6px;
+                white-space: pre-wrap;
+            }
+            .embed-field {
+                margin-top: 6px;
+            }
+            .embed-field-inline {
+                display: inline-block;
+                margin-right: 16px;
+                margin-top: 6px;
+                vertical-align: top;
+                min-width: 120px;
+            }
+            .embed-field-name {
+                font-weight: 600;
+                color: #f0f4f8;
+                display: block;
+                font-size: 12px;
+            }
+            .embed-field-value {
+                color: #d4dce4;
+                font-size: 13px;
+            }
+            .embed-footer {
+                margin-top: 8px;
+                font-size: 12px;
+                color: #6a8a9a;
+                border-top: 1px solid #2a3c4a;
+                padding-top: 6px;
+            }
+            .footer {
+                margin-top: 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #6a8a9a;
+                border-top: 1px solid #2a3c4a;
+                padding-top: 16px;
+            }
+            .footer strong {
+                color: #f0f4f8;
+            }
+            @media (max-width: 700px) {
+                .container { padding: 16px; }
+                .header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .header-right {
+                    text-align: left;
+                    margin-top: 8px;
+                }
+                .info-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .msg {
+                    flex-wrap: wrap;
+                }
+                .avatar-img {
+                    width: 28px;
+                    height: 28px;
+                }
+                .embed-field-inline {
+                    display: block;
+                    margin-right: 0;
+                }
+                .attachment-image img {
+                    max-width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="header-left">
+                    <h1>Transcript – Askipcheat</h1>
+                    <div class="sub">BPW - Force Stream • #request-askipcheat</div>
+                </div>
+                <div class="header-right">
+                    <strong>109</strong> messages<br>
+                    <span style="font-size:11px;">2026-08-18 18:00:37</span>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="item">
+                    <span class="label">Server</span>
+                    <span class="value">BPW - Force Stream</span>
+                </div>
+                <div class="item">
+                    <span class="label">Channel</span>
+                    <span class="value">#request-askipcheat</span>
+                </div>
+                <div class="item">
+                    <span class="label">Ticket Owner</span>
+                    <span class="value">.kayzik</span>
+                </div>
+                <div class="item">
+                    <span class="label">Panel</span>
+                    <span class="value">Gameplay Request</span>
+                </div>
+                <div class="item">
+                    <span class="label">Match Link</span>
+                    <span class="value"><a href="https://betterplayerwin.com/match/6a84bd45afcb365562245ee9" target="_blank">https://betterplayerwin.com/match/6a84bd…</a></span>
+                </div>
+                <div class="item">
+                    <span class="label">Resolution</span>
+                    <span class="value">Closed</span>
+                </div>
+            </div>
+
+            <div class="users-section">
+                <h3>Users in transcript</h3>
+                <ul>
+                    <li style="color:#8fa146;">BPW Force Stream – 6 messages</li><li style="color:#749196;">Wiixen21 – 17 messages</li><li style="color:#0ad39b;">Askipcheat – 86 messages</li>
+                </ul>
+            </div>
+
+            <div class="messages">
+                
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-08-18 21:21:29</span>
+                </div>
+                <div class="text">&lt;@953993422967037982&gt;</div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">Gameplay Request</div><div class="embed-description">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<br>**Requested by**<br>&lt;@953993422967037982&gt;<br><br>**Player**<br>Askipcheat<br><br>**Match Link**<br>https://betterplayerwin.com/match/6a84bd45afcb365562245ee9<br>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div><div class="embed-field"><span class="embed-field-name">Player Added</span><span class="embed-field-value">• &lt;@1342143023802224741&gt;</span></div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:21:36</span>
+                </div>
+                <div class="text">&lt;@1342143023802224741&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-08-18 21:21:37</span>
+                </div>
+                <div class="text">&lt;@1342143023802224741&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-08-18 21:21:38</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">⚠️ Gameplay Requested</div><div class="embed-description">You have **20 minutes** to submit your gameplay.<br><br>**Failure to submit on time will result in a ban.**<br><br>Our staff team will review your submission and determine whether it is valid.<br><br>*Separate monitor cams must be sent via Google Drive, WeTransfer, or Streamable*</div><div class="embed-footer">BetterPlayerWin</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:24:08</span>
+                </div>
+                <div class="text">&lt;@1342143023802224741&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:31:57</span>
+                </div>
+                <div class="text">yo</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:31:58</span>
+                </div>
+                <div class="text">sorry</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:32:26</span>
+                </div>
+                <div class="text">https://www.twitch.tv/videos/2849924920</div>
+        <div class="embed" style="border-left-color:#2b2d31;"><div class="embed-title">forced stream #betterplayerwin.com - kayzik92 on Twitch</div><div class="embed-description">kayzik92 went live on Twitch. Catch up on their Fortnite VOD now.</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:32:28</span>
+                </div>
+                <div class="text">there is</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:32:59</span>
+                </div>
+                <div class="text">And ur cam ?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:08</span>
+                </div>
+                <div class="text">i dont have cam cuz last time</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:11</span>
+                </div>
+                <div class="text">i got unban via the tweet they did and they said we put the roles forcced sstreeaaam</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:13</span>
+                </div>
+                <div class="text">and i did</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:14</span>
+                </div>
+                <div class="text">ticket</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:15</span>
+                </div>
+                <div class="text">to</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:17</span>
+                </div>
+                <div class="text">receive</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:17</span>
+                </div>
+                <div class="text">the</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:19</span>
+                </div>
+                <div class="text">fs server</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:22</span>
+                </div>
+                <div class="text">and they didnt</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:23</span>
+                </div>
+                <div class="text">told</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:24</span>
+                </div>
+                <div class="text">me</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:25</span>
+                </div>
+                <div class="text">to</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:26</span>
+                </div>
+                <div class="text">put</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:28</span>
+                </div>
+                <div class="text">monitor</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:29</span>
+                </div>
+                <div class="text">cam</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:34</span>
+                </div>
+                <div class="text">so i did ticket</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:39</span>
+                </div>
+                <div class="text">and they said yh only</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:33:42</span>
+                </div>
+                <div class="text">fs</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:34:25</span>
+                </div>
+                <div class="text">so ??</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:35:10</span>
+                </div>
+                <div class="text">it was dingle</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:35:14</span>
+                </div>
+                <div class="text">if i remember</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:35:18</span>
+                </div>
+                <div class="text">he send me</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:35:20</span>
+                </div>
+                <div class="text">the serv</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:35:29</span>
+                </div>
+                <div class="text">27 june</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:36:02</span>
+                </div>
+                <div class="text">Look ur role</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:36:09</span>
+                </div>
+                <div class="text">Your fs + monitor cam</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:36:14</span>
+                </div>
+                <div class="text">yh but i asked</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:36:15</span>
+                </div>
+                <div class="text">it</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:36:16</span>
+                </div>
+                <div class="text">was</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:36:17</span>
+                </div>
+                <div class="text">the</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:36:23</span>
+                </div>
+                <div class="text">automaticly roles</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:36:27</span>
+                </div>
+                <div class="text">when i join</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:36:30</span>
+                </div>
+                <div class="text">i directly hadd that</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:36:33</span>
+                </div>
+                <div class="text">and i asked</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:36:35</span>
+                </div>
+                <div class="text">and they</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:36:37</span>
+                </div>
+                <div class="text">just said</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:36:39</span>
+                </div>
+                <div class="text">to fs</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:38:43</span>
+                </div>
+                <div class="text">i was in stream</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:38:48</span>
+                </div>
+                <div class="text">i laucnh my game in stream</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:39:00</span>
+                </div>
+                <div class="text">i didnt did weird thing</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:39:02</span>
+                </div>
+                <div class="text">im fully clean</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:40:47</span>
+                </div>
+                <div class="text">&lt;@953993422967037982&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-08-18 21:41:39</span>
+                </div>
+                <div class="text">@everyone</div>
+        <div class="embed" style="border-left-color:#e74c3c;"><div class="embed-title">⏰ Time&#x27;s Up</div><div class="embed-description">The time window has expired.<br><br>**Failure to complete on time will result in a ban.**</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:43:09</span>
+                </div>
+                <div class="text">just give win bro the next opponents are waiting since 1hour bro</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:43:10</span>
+                </div>
+                <div class="text">i win</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:43:13</span>
+                </div>
+                <div class="text">3-1</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:43:16</span>
+                </div>
+                <div class="text">they were bad</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:43:47</span>
+                </div>
+                <div class="text">&lt;@953993422967037982&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:48:14</span>
+                </div>
+                <div class="text">&lt;@1342143023802224741&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:48:16</span>
+                </div>
+                <div class="text">I warned you</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:19</span>
+                </div>
+                <div class="text">what</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:48:22</span>
+                </div>
+                <div class="text">For no monitor cam</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:24</span>
+                </div>
+                <div class="text">bro</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:27</span>
+                </div>
+                <div class="text">i cant</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:34</span>
+                </div>
+                <div class="text">just put me roles fs normal</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:36</span>
+                </div>
+                <div class="text">lik e</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:39</span>
+                </div>
+                <div class="text">i got unban via</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:40</span>
+                </div>
+                <div class="text">the</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:41</span>
+                </div>
+                <div class="text">tweet</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:47</span>
+                </div>
+                <div class="text">last time</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:52</span>
+                </div>
+                <div class="text">anddddd they directly</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:54</span>
+                </div>
+                <div class="text">invite me</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:55</span>
+                </div>
+                <div class="text">in there</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:57</span>
+                </div>
+                <div class="text">and toldddd</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:58</span>
+                </div>
+                <div class="text">me</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:48:59</span>
+                </div>
+                <div class="text">You can do with your phone</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:48:59</span>
+                </div>
+                <div class="text">to fs</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:49:03</span>
+                </div>
+                <div class="text">just that</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:49:10</span>
+                </div>
+                <div class="text">i cant mums</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:49:24</span>
+                </div>
+                <div class="text">Record your camera with your phone</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:49:31</span>
+                </div>
+                <div class="text">I warned you</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:49:33</span>
+                </div>
+                <div class="text">.close</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:49:34</span>
+                </div>
+                <div class="text">how and then</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:49:35</span>
+                </div>
+                <div class="text">i send</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:49:37</span>
+                </div>
+                <div class="text">the clip</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:49:43</span>
+                </div>
+                <div class="text">Via youtube</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:49:46</span>
+                </div>
+                <div class="text">Or streamable</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:49:50</span>
+                </div>
+                <div class="text">ok</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 21:50:04</span>
+                </div>
+                <div class="text">Anything else</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:50:09</span>
+                </div>
+                <div class="text">yeah</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:50:12</span>
+                </div>
+                <div class="text">how ccan i be removed</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:50:18</span>
+                </div>
+                <div class="text">from monitor cam</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:50:23</span>
+                </div>
+                <div class="text">cuz</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:50:23</span>
+                </div>
+                <div class="text">bro</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:50:26</span>
+                </div>
+                <div class="text">thats not fair</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:51:35</span>
+                </div>
+                <div class="text">&lt;@953993422967037982&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:55:51</span>
+                </div>
+                <div class="text">can u just put me in fs</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:55:53</span>
+                </div>
+                <div class="text">bro</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:55:56</span>
+                </div>
+                <div class="text">like</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:55:56</span>
+                </div>
+                <div class="text">mod</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:55:57</span>
+                </div>
+                <div class="text">before</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:55:58</span>
+                </div>
+                <div class="text">told</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:55:58</span>
+                </div>
+                <div class="text">me</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:55:59</span>
+                </div>
+                <div class="text">to</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1342143023802224741/b0a0415668dcda00cc549e5417c27b5f.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#0ad39b;">Askipcheat</span>
+                    <span class="ts">2026-08-18 21:56:08</span>
+                </div>
+                <div class="text">fs normal when they sent me the server</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 22:00:20</span>
+                </div>
+                <div class="text">If you dont got reported a lot of times</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/953993422967037982/5365898b3c1e77f0348facdc5044c420.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#749196;">Wiixen21</span>
+                    <span class="ts">2026-08-18 22:00:28</span>
+                </div>
+                <div class="text">Admin will put u in fs only</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-08-18 22:00:36</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#6c7a89;"><div class="embed-title">Request Closed – Askipcheat</div><div class="embed-description">Closed by &lt;@953993422967037982&gt;</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-08-18 22:00:36</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-description">⏳ Saving transcript...</div></div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="footer">
+                Generated by <strong>BPW Force Stream Bot</strong> • 2026-08-18 18:00:37
+            </div>
+        </div>
+    </body>
+    </html>
+    
