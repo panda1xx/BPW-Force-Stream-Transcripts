@@ -1,0 +1,1705 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Transcript – Tayy1z</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            * { margin:0; padding:0; box-sizing:border-box; }
+            body {
+                font-family: 'Inter', sans-serif;
+                background: #0e1a24;
+                color: #d4dce4;
+                padding: 20px;
+                line-height: 1.5;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .container {
+                max-width: 1000px;
+                width: 100%;
+                background: #15222e;
+                border-radius: 16px;
+                padding: 30px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+                border: 1px solid #2a3c4a;
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                padding-bottom: 16px;
+                margin-bottom: 24px;
+                border-bottom: 2px solid #2a3c4a;
+            }
+            .header-left h1 {
+                font-size: 24px;
+                font-weight: 700;
+                color: #f0f4f8;
+                letter-spacing: -0.5px;
+            }
+            .header-left .sub {
+                font-size: 14px;
+                color: #8aa4b4;
+                margin-top: 2px;
+            }
+            .header-right {
+                text-align: right;
+                font-size: 13px;
+                color: #8aa4b4;
+            }
+            .header-right strong {
+                color: #f0f4f8;
+            }
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 12px;
+                background: #0e1a24;
+                padding: 16px 20px;
+                border-radius: 12px;
+                margin-bottom: 24px;
+                border: 1px solid #2a3c4a;
+            }
+            .info-grid .item {
+                display: flex;
+                flex-direction: column;
+            }
+            .info-grid .label {
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.4px;
+                color: #6a8a9a;
+                font-weight: 600;
+            }
+            .info-grid .value {
+                font-weight: 500;
+                color: #f0f4f8;
+                word-break: break-word;
+                margin-top: 2px;
+            }
+            .info-grid .value a {
+                color: #8fc1d9;
+                text-decoration: none;
+            }
+            .info-grid .value a:hover {
+                text-decoration: underline;
+            }
+            .users-section {
+                background: #0e1a24;
+                padding: 12px 20px;
+                border-radius: 12px;
+                margin-bottom: 24px;
+                border: 1px solid #2a3c4a;
+            }
+            .users-section h3 {
+                font-size: 14px;
+                font-weight: 600;
+                color: #8aa4b4;
+                margin-bottom: 6px;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+            }
+            .users-section ul {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 18px;
+            }
+            .users-section ul li {
+                font-size: 13px;
+            }
+            .messages {
+                max-height: 650px;
+                overflow-y: auto;
+                background: #0a161f;
+                border-radius: 12px;
+                padding: 4px 0;
+                border: 1px solid #2a3c4a;
+            }
+            .msg {
+                display: flex;
+                gap: 12px;
+                padding: 10px 16px;
+                transition: background 0.1s;
+                align-items: flex-start;
+            }
+            .msg:hover {
+                background: #1a2c3a;
+            }
+            .avatar-img {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+            .msg-content {
+                flex: 1;
+                min-width: 0;
+            }
+            .msg-header {
+                display: flex;
+                align-items: baseline;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin-bottom: 2px;
+            }
+            .author {
+                font-weight: 600;
+                font-size: 15px;
+            }
+            .ts {
+                font-size: 11px;
+                color: #6a8a9a;
+                font-family: 'JetBrains Mono', monospace;
+            }
+            .text {
+                font-size: 14px;
+                word-break: break-word;
+                color: #d4dce4;
+            }
+            .attachment-image {
+                margin-top: 8px;
+            }
+            .attachment-image img {
+                max-width: 400px;
+                max-height: 300px;
+                border-radius: 8px;
+                border: 1px solid #2a3c4a;
+                object-fit: cover;
+            }
+            .attachment-file {
+                margin-top: 8px;
+                background: #0e1a24;
+                padding: 4px 12px;
+                border-radius: 6px;
+                display: inline-block;
+                border: 1px solid #2a3c4a;
+                font-size: 13px;
+            }
+            .attachment-file a {
+                color: #8fc1d9;
+                text-decoration: none;
+            }
+            .attachment-file a:hover {
+                text-decoration: underline;
+            }
+            .embed {
+                background: #0e1a24;
+                border-left: 4px solid #2b2d31;
+                border-radius: 0 8px 8px 0;
+                padding: 10px 14px;
+                margin-top: 10px;
+                max-width: 600px;
+            }
+            .embed-title {
+                font-weight: 600;
+                color: #f0f4f8;
+                margin-bottom: 4px;
+            }
+            .embed-description {
+                font-size: 13px;
+                color: #d4dce4;
+                margin-bottom: 6px;
+                white-space: pre-wrap;
+            }
+            .embed-field {
+                margin-top: 6px;
+            }
+            .embed-field-inline {
+                display: inline-block;
+                margin-right: 16px;
+                margin-top: 6px;
+                vertical-align: top;
+                min-width: 120px;
+            }
+            .embed-field-name {
+                font-weight: 600;
+                color: #f0f4f8;
+                display: block;
+                font-size: 12px;
+            }
+            .embed-field-value {
+                color: #d4dce4;
+                font-size: 13px;
+            }
+            .embed-footer {
+                margin-top: 8px;
+                font-size: 12px;
+                color: #6a8a9a;
+                border-top: 1px solid #2a3c4a;
+                padding-top: 6px;
+            }
+            .footer {
+                margin-top: 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #6a8a9a;
+                border-top: 1px solid #2a3c4a;
+                padding-top: 16px;
+            }
+            .footer strong {
+                color: #f0f4f8;
+            }
+            @media (max-width: 700px) {
+                .container { padding: 16px; }
+                .header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .header-right {
+                    text-align: left;
+                    margin-top: 8px;
+                }
+                .info-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .msg {
+                    flex-wrap: wrap;
+                }
+                .avatar-img {
+                    width: 28px;
+                    height: 28px;
+                }
+                .embed-field-inline {
+                    display: block;
+                    margin-right: 0;
+                }
+                .attachment-image img {
+                    max-width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="header-left">
+                    <h1>Transcript – Tayy1z</h1>
+                    <div class="sub">BPW - Force Stream • #request-delulu</div>
+                </div>
+                <div class="header-right">
+                    <strong>114</strong> messages<br>
+                    <span style="font-size:11px;">2026-09-03 18:37:54</span>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="item">
+                    <span class="label">Server</span>
+                    <span class="value">BPW - Force Stream</span>
+                </div>
+                <div class="item">
+                    <span class="label">Channel</span>
+                    <span class="value">#request-delulu</span>
+                </div>
+                <div class="item">
+                    <span class="label">Ticket Owner</span>
+                    <span class="value">tayy1z</span>
+                </div>
+                <div class="item">
+                    <span class="label">Panel</span>
+                    <span class="value">Gameplay Request</span>
+                </div>
+                <div class="item">
+                    <span class="label">Match Link</span>
+                    <span class="value"><a href="https://betterplayerwin.com/match/6a99d7d8ffaade2bf14bd5be" target="_blank">https://betterplayerwin.com/match/6a99d7…</a></span>
+                </div>
+                <div class="item">
+                    <span class="label">Resolution</span>
+                    <span class="value">Closed</span>
+                </div>
+            </div>
+
+            <div class="users-section">
+                <h3>Users in transcript</h3>
+                <ul>
+                    <li style="color:#8fa146;">BPW Force Stream – 3 messages</li><li style="color:#db62ca;">Alex4445k – 31 messages</li><li style="color:#f549eb;">Delulu – 80 messages</li>
+                </ul>
+            </div>
+
+            <div class="messages">
+                
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-03 21:33:59</span>
+                </div>
+                <div class="text">&lt;@1455256698699649147&gt;</div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">Gameplay Request</div><div class="embed-description">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<br>**Requested by**<br>&lt;@1455256698699649147&gt;<br><br>**Player**<br>Tayy1z<br><br>**Match Link**<br>https://betterplayerwin.com/match/6a99d7d8ffaade2bf14bd5be<br>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div><div class="embed-field"><span class="embed-field-name">Player Added</span><span class="embed-field-value">• &lt;@1189928705884176480&gt;</span></div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 21:34:06</span>
+                </div>
+                <div class="text">hello</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 21:34:11</span>
+                </div>
+                <div class="text">&lt;@1189928705884176480&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 21:34:17</span>
+                </div>
+                <div class="text">did u stream this token?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 21:35:11</span>
+                </div>
+                <div class="text">if u did, send me the vod because i cant find it</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 21:41:32</span>
+                </div>
+                <div class="text">yo</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 21:41:33</span>
+                </div>
+                <div class="text">erm</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 21:41:35</span>
+                </div>
+                <div class="text">yh i did</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 21:41:36</span>
+                </div>
+                <div class="text">one sec</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 21:41:40</span>
+                </div>
+                <div class="text">in a ft5</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 21:42:00</span>
+                </div>
+                <div class="text">ok</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 21:42:10</span>
+                </div>
+                <div class="text">@ me</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 21:42:14</span>
+                </div>
+                <div class="text">when you&#x27;re here</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 21:59:23</span>
+                </div>
+                <div class="text">&lt;@1189928705884176480&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:02:30</span>
+                </div>
+                <div class="text">im</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:02:30</span>
+                </div>
+                <div class="text">in</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:02:31</span>
+                </div>
+                <div class="text">final</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:02:33</span>
+                </div>
+                <div class="text">can u wait</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:02:34</span>
+                </div>
+                <div class="text">or no</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:02:38</span>
+                </div>
+                <div class="text">ill sends it</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:02:39</span>
+                </div>
+                <div class="text">after</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:02:43</span>
+                </div>
+                <div class="text">look my stream iyw</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:02:45</span>
+                </div>
+                <div class="text">im in final</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:09:20</span>
+                </div>
+                <div class="text">ok</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:09:21</span>
+                </div>
+                <div class="text">done</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:09:28</span>
+                </div>
+                <div class="text">sending now</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:09:31</span>
+                </div>
+                <div class="text">&lt;@1455256698699649147&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:11:14</span>
+                </div>
+                <div class="text">its been deleted &lt;@1455256698699649147&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:13:20</span>
+                </div>
+                <div class="text">do u have any proof to show me that u streamed it?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:13:26</span>
+                </div>
+                <div class="text">yea</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:13:28</span>
+                </div>
+                <div class="text">if u can show me</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:13:29</span>
+                </div>
+                <div class="text">where my</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:13:30</span>
+                </div>
+                <div class="text">deleted</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:13:34</span>
+                </div>
+                <div class="text">vods are i can</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:13:40</span>
+                </div>
+                <div class="text">u want me to go call</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:13:41</span>
+                </div>
+                <div class="text">and ss/</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:13:47</span>
+                </div>
+                <div class="text">u try help</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:13:47</span>
+                </div>
+                <div class="text">?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:13:55</span>
+                </div>
+                <div class="text">how it is delated</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:13:59</span>
+                </div>
+                <div class="text">bc</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:13:59</span>
+                </div>
+                <div class="text">if you have the vods on</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:14:00</span>
+                </div>
+                <div class="text">it was short</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:14:06</span>
+                </div>
+                <div class="text">idk mate</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:14:12</span>
+                </div>
+                <div class="text">like</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:14:14</span>
+                </div>
+                <div class="text">also</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:14:16</span>
+                </div>
+                <div class="text">how r u even</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:14:18</span>
+                </div>
+                <div class="text">making a ticket</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:14:21</span>
+                </div>
+                <div class="text">if they put loose?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:19:33</span>
+                </div>
+                <div class="text">&lt;@1455256698699649147&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:26:08</span>
+                </div>
+                <div class="text">doesnt matter</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:26:47</span>
+                </div>
+                <div class="text">you should have been streaming it</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:26:58</span>
+                </div>
+                <div class="text">i did</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:26:59</span>
+                </div>
+                <div class="text">stream it</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:27:02</span>
+                </div>
+                <div class="text">r u real</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:27:16</span>
+                </div>
+                <div class="text">show me</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:27:59</span>
+                </div>
+                <div class="text">im</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:28:00</span>
+                </div>
+                <div class="text">trying</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:28:01</span>
+                </div>
+                <div class="text">to get it</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:28:02</span>
+                </div>
+                <div class="text">mate</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:28:02</span>
+                </div>
+                <div class="text">u idiot</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:28:24</span>
+                </div>
+                <div class="text">watch ur words</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:28:30</span>
+                </div>
+                <div class="text">ill</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:28:30</span>
+                </div>
+                <div class="text">do what</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:28:31</span>
+                </div>
+                <div class="text">i like</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:28:38</span>
+                </div>
+                <div class="text">u romanion discord mod</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:28:51</span>
+                </div>
+                <div class="text">ur fncs warm ups were primed btw</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:28:54</span>
+                </div>
+                <div class="text">on twitch</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:28:55</span>
+                </div>
+                <div class="text">fucking primed g</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:29:59</span>
+                </div>
+                <div class="text">ok</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:30:45</span>
+                </div>
+                <div class="text">ill wait</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:31:04</span>
+                </div>
+                <div class="text">if u will send me the vod</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:31:06</span>
+                </div>
+                <div class="text">let me know</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:31:40</span>
+                </div>
+                <div class="text">icl</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:31:46</span>
+                </div>
+                <div class="text">i cant get it</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:31:49</span>
+                </div>
+                <div class="text">its deleted</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:32:03</span>
+                </div>
+                <div class="text">why would i not stream one perticuler token</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:32:07</span>
+                </div>
+                <div class="text">look at every other vod</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:32:09</span>
+                </div>
+                <div class="text">i streamed</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:32:13</span>
+                </div>
+                <div class="text">this one is deleted</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:32:16</span>
+                </div>
+                <div class="text">i did nothjing sus</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:32:19</span>
+                </div>
+                <div class="text">nothing sus at all</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:32:23</span>
+                </div>
+                <div class="text">so idk how u can even ban</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:32:59</span>
+                </div>
+                <div class="text">u wont be banned</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:33:01</span>
+                </div>
+                <div class="text">just warned</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:06</span>
+                </div>
+                <div class="text">for?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:33:11</span>
+                </div>
+                <div class="text">not streaming</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:14</span>
+                </div>
+                <div class="text">i did</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:14</span>
+                </div>
+                <div class="text">tho</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:33:22</span>
+                </div>
+                <div class="text">how can i know it?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:28</span>
+                </div>
+                <div class="text">brother</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:29</span>
+                </div>
+                <div class="text">like i said</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:31</span>
+                </div>
+                <div class="text">if u can find</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:33</span>
+                </div>
+                <div class="text">how</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:36</span>
+                </div>
+                <div class="text">i can see</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:37</span>
+                </div>
+                <div class="text">deleted</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:37</span>
+                </div>
+                <div class="text">vods</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:33:38</span>
+                </div>
+                <div class="text">how ill find if it is delated?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:39</span>
+                </div>
+                <div class="text">then igu</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:56</span>
+                </div>
+                <div class="text">yh</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:33:57</span>
+                </div>
+                <div class="text">alr</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:34:00</span>
+                </div>
+                <div class="text">js warn me then</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:34:55</span>
+                </div>
+                <div class="text"></div>
+        <div class="attachment-image"><a href="https://cdn.discordapp.com/attachments/1545185112671522977/1545200447827218572/A42A05FD-6708-4BF7-841F-488B327E8E6F.png?ex=6a9b478f&is=6a99f60f&hm=61d57f2193b00775042433f10421a0fb8100ce77f5a7340eb169063de0881eda&" target="_blank"><img src="https://cdn.discordapp.com/attachments/1545185112671522977/1545200447827218572/A42A05FD-6708-4BF7-841F-488B327E8E6F.png?ex=6a9b478f&is=6a99f60f&hm=61d57f2193b00775042433f10421a0fb8100ce77f5a7340eb169063de0881eda&" alt="A42A05FD-6708-4BF7-841F-488B327E8E6F.png"></a></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:34:56</span>
+                </div>
+                <div class="text">while ur there</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:35:02</span>
+                </div>
+                <div class="text">set me w some karma points</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:35:11</span>
+                </div>
+                <div class="text">i cant</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:35:16</span>
+                </div>
+                <div class="text">sorry</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:35:24</span>
+                </div>
+                <div class="text">yea</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:35:28</span>
+                </div>
+                <div class="text">have a good one</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:35:28</span>
+                </div>
+                <div class="text">.close</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1189928705884176480/baa8187f57979991d38812e415d41191.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f549eb;">Delulu</span>
+                    <span class="ts">2026-09-03 22:36:28</span>
+                </div>
+                <div class="text">&lt;@1455256698699649147&gt; tickets still here g</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:37:46</span>
+                </div>
+                <div class="text">yes</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1455256698699649147/12f2f99a4cf6b670604659806262ff19.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#db62ca;">Alex4445k</span>
+                    <span class="ts">2026-09-03 22:37:48</span>
+                </div>
+                <div class="text">mb</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-03 22:37:52</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#6c7a89;"><div class="embed-title">Request Closed – Tayy1z</div><div class="embed-description">Closed by &lt;@1455256698699649147&gt;</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-03 22:37:53</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-description">⏳ Saving transcript...</div></div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="footer">
+                Generated by <strong>BPW Force Stream Bot</strong> • 2026-09-03 18:37:54
+            </div>
+        </div>
+    </body>
+    </html>
+    
