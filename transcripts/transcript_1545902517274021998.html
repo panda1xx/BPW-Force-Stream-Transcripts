@@ -1,0 +1,998 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Transcript – Soloownsme</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            * { margin:0; padding:0; box-sizing:border-box; }
+            body {
+                font-family: 'Inter', sans-serif;
+                background: #0e1a24;
+                color: #d4dce4;
+                padding: 20px;
+                line-height: 1.5;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .container {
+                max-width: 1000px;
+                width: 100%;
+                background: #15222e;
+                border-radius: 16px;
+                padding: 30px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+                border: 1px solid #2a3c4a;
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                padding-bottom: 16px;
+                margin-bottom: 24px;
+                border-bottom: 2px solid #2a3c4a;
+            }
+            .header-left h1 {
+                font-size: 24px;
+                font-weight: 700;
+                color: #f0f4f8;
+                letter-spacing: -0.5px;
+            }
+            .header-left .sub {
+                font-size: 14px;
+                color: #8aa4b4;
+                margin-top: 2px;
+            }
+            .header-right {
+                text-align: right;
+                font-size: 13px;
+                color: #8aa4b4;
+            }
+            .header-right strong {
+                color: #f0f4f8;
+            }
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 12px;
+                background: #0e1a24;
+                padding: 16px 20px;
+                border-radius: 12px;
+                margin-bottom: 24px;
+                border: 1px solid #2a3c4a;
+            }
+            .info-grid .item {
+                display: flex;
+                flex-direction: column;
+            }
+            .info-grid .label {
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.4px;
+                color: #6a8a9a;
+                font-weight: 600;
+            }
+            .info-grid .value {
+                font-weight: 500;
+                color: #f0f4f8;
+                word-break: break-word;
+                margin-top: 2px;
+            }
+            .info-grid .value a {
+                color: #8fc1d9;
+                text-decoration: none;
+            }
+            .info-grid .value a:hover {
+                text-decoration: underline;
+            }
+            .users-section {
+                background: #0e1a24;
+                padding: 12px 20px;
+                border-radius: 12px;
+                margin-bottom: 24px;
+                border: 1px solid #2a3c4a;
+            }
+            .users-section h3 {
+                font-size: 14px;
+                font-weight: 600;
+                color: #8aa4b4;
+                margin-bottom: 6px;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+            }
+            .users-section ul {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 18px;
+            }
+            .users-section ul li {
+                font-size: 13px;
+            }
+            .messages {
+                max-height: 650px;
+                overflow-y: auto;
+                background: #0a161f;
+                border-radius: 12px;
+                padding: 4px 0;
+                border: 1px solid #2a3c4a;
+            }
+            .msg {
+                display: flex;
+                gap: 12px;
+                padding: 10px 16px;
+                transition: background 0.1s;
+                align-items: flex-start;
+            }
+            .msg:hover {
+                background: #1a2c3a;
+            }
+            .avatar-img {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+            .msg-content {
+                flex: 1;
+                min-width: 0;
+            }
+            .msg-header {
+                display: flex;
+                align-items: baseline;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin-bottom: 2px;
+            }
+            .author {
+                font-weight: 600;
+                font-size: 15px;
+            }
+            .ts {
+                font-size: 11px;
+                color: #6a8a9a;
+                font-family: 'JetBrains Mono', monospace;
+            }
+            .text {
+                font-size: 14px;
+                word-break: break-word;
+                color: #d4dce4;
+            }
+            .attachment-image {
+                margin-top: 8px;
+            }
+            .attachment-image img {
+                max-width: 400px;
+                max-height: 300px;
+                border-radius: 8px;
+                border: 1px solid #2a3c4a;
+                object-fit: cover;
+            }
+            .attachment-file {
+                margin-top: 8px;
+                background: #0e1a24;
+                padding: 4px 12px;
+                border-radius: 6px;
+                display: inline-block;
+                border: 1px solid #2a3c4a;
+                font-size: 13px;
+            }
+            .attachment-file a {
+                color: #8fc1d9;
+                text-decoration: none;
+            }
+            .attachment-file a:hover {
+                text-decoration: underline;
+            }
+            .embed {
+                background: #0e1a24;
+                border-left: 4px solid #2b2d31;
+                border-radius: 0 8px 8px 0;
+                padding: 10px 14px;
+                margin-top: 10px;
+                max-width: 600px;
+            }
+            .embed-title {
+                font-weight: 600;
+                color: #f0f4f8;
+                margin-bottom: 4px;
+            }
+            .embed-description {
+                font-size: 13px;
+                color: #d4dce4;
+                margin-bottom: 6px;
+                white-space: pre-wrap;
+            }
+            .embed-field {
+                margin-top: 6px;
+            }
+            .embed-field-inline {
+                display: inline-block;
+                margin-right: 16px;
+                margin-top: 6px;
+                vertical-align: top;
+                min-width: 120px;
+            }
+            .embed-field-name {
+                font-weight: 600;
+                color: #f0f4f8;
+                display: block;
+                font-size: 12px;
+            }
+            .embed-field-value {
+                color: #d4dce4;
+                font-size: 13px;
+            }
+            .embed-footer {
+                margin-top: 8px;
+                font-size: 12px;
+                color: #6a8a9a;
+                border-top: 1px solid #2a3c4a;
+                padding-top: 6px;
+            }
+            .footer {
+                margin-top: 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #6a8a9a;
+                border-top: 1px solid #2a3c4a;
+                padding-top: 16px;
+            }
+            .footer strong {
+                color: #f0f4f8;
+            }
+            @media (max-width: 700px) {
+                .container { padding: 16px; }
+                .header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .header-right {
+                    text-align: left;
+                    margin-top: 8px;
+                }
+                .info-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .msg {
+                    flex-wrap: wrap;
+                }
+                .avatar-img {
+                    width: 28px;
+                    height: 28px;
+                }
+                .embed-field-inline {
+                    display: block;
+                    margin-right: 0;
+                }
+                .attachment-image img {
+                    max-width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="header-left">
+                    <h1>Transcript – Soloownsme</h1>
+                    <div class="sub">BPW - Force Stream • #request-soloownsme</div>
+                </div>
+                <div class="header-right">
+                    <strong>55</strong> messages<br>
+                    <span style="font-size:11px;">2026-09-06 03:08:21</span>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="item">
+                    <span class="label">Server</span>
+                    <span class="value">BPW - Force Stream</span>
+                </div>
+                <div class="item">
+                    <span class="label">Channel</span>
+                    <span class="value">#request-soloownsme</span>
+                </div>
+                <div class="item">
+                    <span class="label">Ticket Owner</span>
+                    <span class="value">ukcrazy.</span>
+                </div>
+                <div class="item">
+                    <span class="label">Panel</span>
+                    <span class="value">Gameplay Request</span>
+                </div>
+                <div class="item">
+                    <span class="label">Match Link</span>
+                    <span class="value"><a href="https://betterplayerwin.com/match/6a9c7a47ab58dcb4a84252d6" target="_blank">https://betterplayerwin.com/match/6a9c7a…</a></span>
+                </div>
+                <div class="item">
+                    <span class="label">Resolution</span>
+                    <span class="value">Closed</span>
+                </div>
+            </div>
+
+            <div class="users-section">
+                <h3>Users in transcript</h3>
+                <ul>
+                    <li style="color:#8fa146;">BPW Force Stream – 6 messages</li><li style="color:#f88cfa;">Shxnksrr – 40 messages</li><li style="color:#505fb0;">Crazyyyy – 9 messages</li>
+                </ul>
+            </div>
+
+            <div class="messages">
+                
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-05 21:04:42</span>
+                </div>
+                <div class="text">&lt;@1325145501712253071&gt;</div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">Gameplay Request</div><div class="embed-description">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<br>**Requested by**<br>&lt;@1325145501712253071&gt;<br><br>**Player**<br>Soloownsme<br><br>**Match Link**<br>https://betterplayerwin.com/match/6a9c7a47ab58dcb4a84252d6<br>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div><div class="embed-field"><span class="embed-field-name">Player Not Found</span><span class="embed-field-value">• No member with that name was found.
+• Please add them manually using the button below.</span></div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-05 21:04:54</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">Users Added</div><div class="embed-description">• &lt;@786196529895178250&gt;</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-05 21:04:58</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">⚠️ Gameplay Requested</div><div class="embed-description">You have **20 minutes** to submit your gameplay.<br><br>**Failure to submit on time will result in a ban.**<br><br>Our staff team will review your submission and determine whether it is valid.<br><br>*Separate monitor cams must be sent via Google Drive, WeTransfer, or Streamable*</div><div class="embed-footer">BetterPlayerWin</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:05:01</span>
+                </div>
+                <div class="text">yo</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:05:08</span>
+                </div>
+                <div class="text">wait i need to close my strem</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:05:11</span>
+                </div>
+                <div class="text">stream</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1325145501712253071/ce1532a0e7331dd2d95ef522dee1959a.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#505fb0;">Crazyyyy</span>
+                    <span class="ts">2026-09-05 21:05:11</span>
+                </div>
+                <div class="text">ok</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1325145501712253071/ce1532a0e7331dd2d95ef522dee1959a.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#505fb0;">Crazyyyy</span>
+                    <span class="ts">2026-09-05 21:05:13</span>
+                </div>
+                <div class="text">u got 20 mins</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:05:32</span>
+                </div>
+                <div class="text"></div>
+        <div class="attachment-image"><a href="https://cdn.discordapp.com/attachments/1545902517274021998/1545902730965688341/image.png?ex=6a9dd59c&is=6a9c841c&hm=accffb0b470af25b35d9685bd08eb5ee5a866d380f007c019cdcd1f33ea32f51&" target="_blank"><img src="https://cdn.discordapp.com/attachments/1545902517274021998/1545902730965688341/image.png?ex=6a9dd59c&is=6a9c841c&hm=accffb0b470af25b35d9685bd08eb5ee5a866d380f007c019cdcd1f33ea32f51&" alt="image.png"></a></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:05:37</span>
+                </div>
+                <div class="text">this guys going to get</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:05:38</span>
+                </div>
+                <div class="text">ban?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:06:15</span>
+                </div>
+                <div class="text"></div>
+        <div class="attachment-image"><a href="https://cdn.discordapp.com/attachments/1545902517274021998/1545902909764403250/image.png?ex=6a9dd5c7&is=6a9c8447&hm=4cc742f9b8f8e33cefc0eb2fab18a01e80326a15e747d05aa4aeb8804f591717&" target="_blank"><img src="https://cdn.discordapp.com/attachments/1545902517274021998/1545902909764403250/image.png?ex=6a9dd5c7&is=6a9c8447&hm=4cc742f9b8f8e33cefc0eb2fab18a01e80326a15e747d05aa4aeb8804f591717&" alt="image.png"></a></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:06:19</span>
+                </div>
+                <div class="text"></div>
+        <div class="attachment-image"><a href="https://cdn.discordapp.com/attachments/1545902517274021998/1545902925543379074/image.png?ex=6a9dd5ca&is=6a9c844a&hm=5294300573a663e187d06b0cf93bd3558e0e5685150c5394ddaf5e4e652cbd56&" target="_blank"><img src="https://cdn.discordapp.com/attachments/1545902517274021998/1545902925543379074/image.png?ex=6a9dd5ca&is=6a9c844a&hm=5294300573a663e187d06b0cf93bd3558e0e5685150c5394ddaf5e4e652cbd56&" alt="image.png"></a></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:06:21</span>
+                </div>
+                <div class="text">dont forgot to ban hil</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:06:23</span>
+                </div>
+                <div class="text">him pls</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:07:30</span>
+                </div>
+                <div class="text"></div>
+        <div class="attachment-image"><a href="https://cdn.discordapp.com/attachments/1545902517274021998/1545903227189592154/image.png?ex=6a9dd612&is=6a9c8492&hm=dc3942c92e14df530a984eb42baf1666414fd17590625f3a53ba43593f1d37f9&" target="_blank"><img src="https://cdn.discordapp.com/attachments/1545902517274021998/1545903227189592154/image.png?ex=6a9dd612&is=6a9c8492&hm=dc3942c92e14df530a984eb42baf1666414fd17590625f3a53ba43593f1d37f9&" alt="image.png"></a></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:07:36</span>
+                </div>
+                <div class="text">my replays wasnt activate bcs i changed</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:07:38</span>
+                </div>
+                <div class="text">my twitch</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:07:39</span>
+                </div>
+                <div class="text">ong</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:08:00</span>
+                </div>
+                <div class="text"></div>
+        <div class="attachment-image"><a href="https://cdn.discordapp.com/attachments/1545902517274021998/1545903349663277137/image.png?ex=6a9dd630&is=6a9c84b0&hm=b92a7adc4a5edce857c0ae35967081f3bbc642712e9a60e3dc79306361dcb835&" target="_blank"><img src="https://cdn.discordapp.com/attachments/1545902517274021998/1545903349663277137/image.png?ex=6a9dd630&is=6a9c84b0&hm=b92a7adc4a5edce857c0ae35967081f3bbc642712e9a60e3dc79306361dcb835&" alt="image.png"></a></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:08:04</span>
+                </div>
+                <div class="text">look i got banned on my first</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:08:06</span>
+                </div>
+                <div class="text">twitch</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:08:50</span>
+                </div>
+                <div class="text">&lt;@1325145501712253071&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1325145501712253071/ce1532a0e7331dd2d95ef522dee1959a.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#505fb0;">Crazyyyy</span>
+                    <span class="ts">2026-09-05 21:10:35</span>
+                </div>
+                <div class="text">so</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1325145501712253071/ce1532a0e7331dd2d95ef522dee1959a.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#505fb0;">Crazyyyy</span>
+                    <span class="ts">2026-09-05 21:10:40</span>
+                </div>
+                <div class="text">u telling me u dont haave vod</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:10:51</span>
+                </div>
+                <div class="text">yh cause i changed twitch</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:10:54</span>
+                </div>
+                <div class="text">chaine</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:11:11</span>
+                </div>
+                <div class="text">just now</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:11:24</span>
+                </div>
+                <div class="text">like i dont know i havent vod on uknow</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:11:31</span>
+                </div>
+                <div class="text">i never get report its my first</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:11:32</span>
+                </div>
+                <div class="text">time</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:11:34</span>
+                </div>
+                <div class="text">since im unbaned</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1325145501712253071/ce1532a0e7331dd2d95ef522dee1959a.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#505fb0;">Crazyyyy</span>
+                    <span class="ts">2026-09-05 21:11:38</span>
+                </div>
+                <div class="text">ok waait for higher</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1325145501712253071/ce1532a0e7331dd2d95ef522dee1959a.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#505fb0;">Crazyyyy</span>
+                    <span class="ts">2026-09-05 21:11:46</span>
+                </div>
+                <div class="text">.rename higher</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:11:57</span>
+                </div>
+                <div class="text">ok np</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-05 21:24:59</span>
+                </div>
+                <div class="text">@everyone</div>
+        <div class="embed" style="border-left-color:#e74c3c;"><div class="embed-title">⏰ Time&#x27;s Up</div><div class="embed-description">The time window has expired.<br><br>**Failure to complete on time will result in a ban.**</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:29:58</span>
+                </div>
+                <div class="text">&lt;@1325145501712253071&gt; my enemy</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:30:00</span>
+                </div>
+                <div class="text">is banned</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:30:02</span>
+                </div>
+                <div class="text">u can close</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1325145501712253071/ce1532a0e7331dd2d95ef522dee1959a.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#505fb0;">Crazyyyy</span>
+                    <span class="ts">2026-09-05 21:36:14</span>
+                </div>
+                <div class="text">no</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1325145501712253071/ce1532a0e7331dd2d95ef522dee1959a.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#505fb0;">Crazyyyy</span>
+                    <span class="ts">2026-09-05 21:37:07</span>
+                </div>
+                <div class="text">u dont have your vod</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1325145501712253071/ce1532a0e7331dd2d95ef522dee1959a.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#505fb0;">Crazyyyy</span>
+                    <span class="ts">2026-09-05 21:37:14</span>
+                </div>
+                <div class="text">u cant get away with it</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 21:59:57</span>
+                </div>
+                <div class="text">OK NP</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 22:00:19</span>
+                </div>
+                <div class="text">but its my first time u know</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 22:00:24</span>
+                </div>
+                <div class="text">first time report</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 22:00:31</span>
+                </div>
+                <div class="text">i will get warn cause i dont get my</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-05 22:00:32</span>
+                </div>
+                <div class="text">vod?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-06 00:08:44</span>
+                </div>
+                <div class="text">And like u can chek the clip there is nothing and the guys is banned so</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-06 00:08:57</span>
+                </div>
+                <div class="text">I dont need to send anything</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-06 00:09:52</span>
+                </div>
+                <div class="text">And its literaly unlucky cause i never get reported on site and i changed my twitch account cause the first one got banned</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-06 00:10:21</span>
+                </div>
+                <div class="text">3h ago i dont see i need to enable vod back u know</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-06 00:11:19</span>
+                </div>
+                <div class="text">This guys is already banned just close this rn i got my vod all Time I enable it</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/786196529895178250/3d95074c6a7c00097fcbd979be209295.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#f88cfa;">Shxnksrr</span>
+                    <span class="ts">2026-09-06 00:11:53</span>
+                </div>
+                <div class="text">If u need somthing else just @ me</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-06 07:08:20</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#6c7a89;"><div class="embed-title">Request Closed – Soloownsme</div><div class="embed-description">Closed by &lt;@1325145501712253071&gt;</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-06 07:08:21</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-description">⏳ Saving transcript...</div></div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="footer">
+                Generated by <strong>BPW Force Stream Bot</strong> • 2026-09-06 03:08:21
+            </div>
+        </div>
+    </body>
+    </html>
+    
