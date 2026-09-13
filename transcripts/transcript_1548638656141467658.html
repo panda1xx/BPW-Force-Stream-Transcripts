@@ -1,0 +1,1021 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Transcript – Jaceey</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            * { margin:0; padding:0; box-sizing:border-box; }
+            body {
+                font-family: 'Inter', sans-serif;
+                background: #0e1a24;
+                color: #d4dce4;
+                padding: 20px;
+                line-height: 1.5;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .container {
+                max-width: 1000px;
+                width: 100%;
+                background: #15222e;
+                border-radius: 16px;
+                padding: 30px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+                border: 1px solid #2a3c4a;
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                padding-bottom: 16px;
+                margin-bottom: 24px;
+                border-bottom: 2px solid #2a3c4a;
+            }
+            .header-left h1 {
+                font-size: 24px;
+                font-weight: 700;
+                color: #f0f4f8;
+                letter-spacing: -0.5px;
+            }
+            .header-left .sub {
+                font-size: 14px;
+                color: #8aa4b4;
+                margin-top: 2px;
+            }
+            .header-right {
+                text-align: right;
+                font-size: 13px;
+                color: #8aa4b4;
+            }
+            .header-right strong {
+                color: #f0f4f8;
+            }
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 12px;
+                background: #0e1a24;
+                padding: 16px 20px;
+                border-radius: 12px;
+                margin-bottom: 24px;
+                border: 1px solid #2a3c4a;
+            }
+            .info-grid .item {
+                display: flex;
+                flex-direction: column;
+            }
+            .info-grid .label {
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.4px;
+                color: #6a8a9a;
+                font-weight: 600;
+            }
+            .info-grid .value {
+                font-weight: 500;
+                color: #f0f4f8;
+                word-break: break-word;
+                margin-top: 2px;
+            }
+            .info-grid .value a {
+                color: #8fc1d9;
+                text-decoration: none;
+            }
+            .info-grid .value a:hover {
+                text-decoration: underline;
+            }
+            .users-section {
+                background: #0e1a24;
+                padding: 12px 20px;
+                border-radius: 12px;
+                margin-bottom: 24px;
+                border: 1px solid #2a3c4a;
+            }
+            .users-section h3 {
+                font-size: 14px;
+                font-weight: 600;
+                color: #8aa4b4;
+                margin-bottom: 6px;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+            }
+            .users-section ul {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 18px;
+            }
+            .users-section ul li {
+                font-size: 13px;
+            }
+            .messages {
+                max-height: 650px;
+                overflow-y: auto;
+                background: #0a161f;
+                border-radius: 12px;
+                padding: 4px 0;
+                border: 1px solid #2a3c4a;
+            }
+            .msg {
+                display: flex;
+                gap: 12px;
+                padding: 10px 16px;
+                transition: background 0.1s;
+                align-items: flex-start;
+            }
+            .msg:hover {
+                background: #1a2c3a;
+            }
+            .avatar-img {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+            .msg-content {
+                flex: 1;
+                min-width: 0;
+            }
+            .msg-header {
+                display: flex;
+                align-items: baseline;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin-bottom: 2px;
+            }
+            .author {
+                font-weight: 600;
+                font-size: 15px;
+            }
+            .ts {
+                font-size: 11px;
+                color: #6a8a9a;
+                font-family: 'JetBrains Mono', monospace;
+            }
+            .text {
+                font-size: 14px;
+                word-break: break-word;
+                color: #d4dce4;
+            }
+            .attachment-image {
+                margin-top: 8px;
+            }
+            .attachment-image img {
+                max-width: 400px;
+                max-height: 300px;
+                border-radius: 8px;
+                border: 1px solid #2a3c4a;
+                object-fit: cover;
+            }
+            .attachment-file {
+                margin-top: 8px;
+                background: #0e1a24;
+                padding: 4px 12px;
+                border-radius: 6px;
+                display: inline-block;
+                border: 1px solid #2a3c4a;
+                font-size: 13px;
+            }
+            .attachment-file a {
+                color: #8fc1d9;
+                text-decoration: none;
+            }
+            .attachment-file a:hover {
+                text-decoration: underline;
+            }
+            .embed {
+                background: #0e1a24;
+                border-left: 4px solid #2b2d31;
+                border-radius: 0 8px 8px 0;
+                padding: 10px 14px;
+                margin-top: 10px;
+                max-width: 600px;
+            }
+            .embed-title {
+                font-weight: 600;
+                color: #f0f4f8;
+                margin-bottom: 4px;
+            }
+            .embed-description {
+                font-size: 13px;
+                color: #d4dce4;
+                margin-bottom: 6px;
+                white-space: pre-wrap;
+            }
+            .embed-field {
+                margin-top: 6px;
+            }
+            .embed-field-inline {
+                display: inline-block;
+                margin-right: 16px;
+                margin-top: 6px;
+                vertical-align: top;
+                min-width: 120px;
+            }
+            .embed-field-name {
+                font-weight: 600;
+                color: #f0f4f8;
+                display: block;
+                font-size: 12px;
+            }
+            .embed-field-value {
+                color: #d4dce4;
+                font-size: 13px;
+            }
+            .embed-footer {
+                margin-top: 8px;
+                font-size: 12px;
+                color: #6a8a9a;
+                border-top: 1px solid #2a3c4a;
+                padding-top: 6px;
+            }
+            .footer {
+                margin-top: 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #6a8a9a;
+                border-top: 1px solid #2a3c4a;
+                padding-top: 16px;
+            }
+            .footer strong {
+                color: #f0f4f8;
+            }
+            @media (max-width: 700px) {
+                .container { padding: 16px; }
+                .header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .header-right {
+                    text-align: left;
+                    margin-top: 8px;
+                }
+                .info-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .msg {
+                    flex-wrap: wrap;
+                }
+                .avatar-img {
+                    width: 28px;
+                    height: 28px;
+                }
+                .embed-field-inline {
+                    display: block;
+                    margin-right: 0;
+                }
+                .attachment-image img {
+                    max-width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="header-left">
+                    <h1>Transcript – Jaceey</h1>
+                    <div class="sub">BPW - Force Stream • #pc-check-jaceey</div>
+                </div>
+                <div class="header-right">
+                    <strong>57</strong> messages<br>
+                    <span style="font-size:11px;">2026-09-13 06:57:45</span>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="item">
+                    <span class="label">Server</span>
+                    <span class="value">BPW - Force Stream</span>
+                </div>
+                <div class="item">
+                    <span class="label">Channel</span>
+                    <span class="value">#pc-check-jaceey</span>
+                </div>
+                <div class="item">
+                    <span class="label">Ticket Owner</span>
+                    <span class="value">jaceewya</span>
+                </div>
+                <div class="item">
+                    <span class="label">Panel</span>
+                    <span class="value">Gameplay Request</span>
+                </div>
+                <div class="item">
+                    <span class="label">Match Link</span>
+                    <span class="value"><a href="N/A" target="_blank">N/A</a></span>
+                </div>
+                <div class="item">
+                    <span class="label">Resolution</span>
+                    <span class="value">Passed PC Check</span>
+                </div>
+            </div>
+
+            <div class="users-section">
+                <h3>Users in transcript</h3>
+                <ul>
+                    <li style="color:#8fa146;">BPW Force Stream – 7 messages</li><li style="color:#595161;">Dingle – 7 messages</li><li style="color:#e83114;">Jaceey – 43 messages</li>
+                </ul>
+            </div>
+
+            <div class="messages">
+                
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-13 10:17:08</span>
+                </div>
+                <div class="text">&lt;@1388455055270871144&gt;</div>
+        <div class="embed" style="border-left-color:#1ee9ac;"><div class="embed-title">PC Check Request</div><div class="embed-description">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<br>**Requested by**<br>&lt;@1388455055270871144&gt;<br><br>**Player**<br>Jaceey<br>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div><div class="embed-field"><span class="embed-field-name">Player Added</span><span class="embed-field-value">• &lt;@542160053549924383&gt;</span></div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1388455055270871144/8f64ea7d37ef71de48d0a84f08e0139e.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#595161;">Dingle</span>
+                    <span class="ts">2026-09-13 10:17:16</span>
+                </div>
+                <div class="text">&lt;@542160053549924383&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-13 10:17:32</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">Users Added</div><div class="embed-description">• &lt;@542160053549924383&gt;</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-13 10:17:38</span>
+                </div>
+                <div class="text">&lt;@542160053549924383&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-13 10:17:38</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1ee9ac;"><div class="embed-title">PC Check</div><div class="embed-description">You will be PC checked by our &lt;@&amp;1502809149774364762&gt;<br><br>**From this moment on, DO NOT:**<br>• Restart or shut down your PC<br>• Delete, move, or modify any files<br>• Clear browser history, cache, or downloads<br>• Install or uninstall anything<br>• Use cleaners or privacy tools<br><br>You have **10 minutes** to provide your **AnyDesk session code** to staff.<br><br>Any actions taken from this point may be considered PC check evasion and will be treated as an automatic fail.</div><div class="embed-footer">BetterPlayerWin</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:19:48</span>
+                </div>
+                <div class="text">wait</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:19:51</span>
+                </div>
+                <div class="text">im here</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:19:57</span>
+                </div>
+                <div class="text">im sleeping before</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:19:59</span>
+                </div>
+                <div class="text">sorry</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:20:10</span>
+                </div>
+                <div class="text">&lt;@1388455055270871144&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:20:13</span>
+                </div>
+                <div class="text">ur here</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:20:34</span>
+                </div>
+                <div class="text">I just started up the PC.</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:21:19</span>
+                </div>
+                <div class="text">&lt;@1388455055270871144&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:21:22</span>
+                </div>
+                <div class="text">ur here my g?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:22:36</span>
+                </div>
+                <div class="text">1113513291</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:22:49</span>
+                </div>
+                <div class="text">its my anydesk</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1388455055270871144/8f64ea7d37ef71de48d0a84f08e0139e.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#595161;">Dingle</span>
+                    <span class="ts">2026-09-13 10:22:59</span>
+                </div>
+                <div class="text">o</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1388455055270871144/8f64ea7d37ef71de48d0a84f08e0139e.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#595161;">Dingle</span>
+                    <span class="ts">2026-09-13 10:23:00</span>
+                </div>
+                <div class="text">ok</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1388455055270871144/8f64ea7d37ef71de48d0a84f08e0139e.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#595161;">Dingle</span>
+                    <span class="ts">2026-09-13 10:23:01</span>
+                </div>
+                <div class="text">1s</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:23:07</span>
+                </div>
+                <div class="text">np</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:23:57</span>
+                </div>
+                <div class="text">my g</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-13 10:27:39</span>
+                </div>
+                <div class="text">@everyone</div>
+        <div class="embed" style="border-left-color:#e74c3c;"><div class="embed-title">⏰ Time&#x27;s Up</div><div class="embed-description">The time window has expired.<br><br>**Failure to complete on time will result in a ban.**</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:43:35</span>
+                </div>
+                <div class="text">https://discordapp.com/channels/712712155107164270/1248358692231843911</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:43:40</span>
+                </div>
+                <div class="text">1m to show setup</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:43:49</span>
+                </div>
+                <div class="text">i dont have phone.....</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:44:06</span>
+                </div>
+                <div class="text">banned bc i dont have phone ?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:44:08</span>
+                </div>
+                <div class="text">nice site</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1388455055270871144/8f64ea7d37ef71de48d0a84f08e0139e.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#595161;">Dingle</span>
+                    <span class="ts">2026-09-13 10:44:13</span>
+                </div>
+                <div class="text">u have a phone</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:44:22</span>
+                </div>
+                <div class="text">ong i dont</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:44:26</span>
+                </div>
+                <div class="text">all knowsz</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:44:35</span>
+                </div>
+                <div class="text">its bcs i cant play with monitor cam</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:44:42</span>
+                </div>
+                <div class="text">u check all my pc</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:44:45</span>
+                </div>
+                <div class="text">andu found nothing</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:44:47</span>
+                </div>
+                <div class="text">and i tell u</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:44:50</span>
+                </div>
+                <div class="text">i dont have phone</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:44:53</span>
+                </div>
+                <div class="text">and ong u know</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:44:55</span>
+                </div>
+                <div class="text">i dont have</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:45:26</span>
+                </div>
+                <div class="text">dont be cringe</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:45:33</span>
+                </div>
+                <div class="text">all know i dont have phone</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:45:40</span>
+                </div>
+                <div class="text">&lt;@1388455055270871144&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:45:52</span>
+                </div>
+                <div class="text">u want i call my father</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:45:55</span>
+                </div>
+                <div class="text">and he tell u</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:45:58</span>
+                </div>
+                <div class="text">why i dont have</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:46:00</span>
+                </div>
+                <div class="text">phone ?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1388455055270871144/8f64ea7d37ef71de48d0a84f08e0139e.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#595161;">Dingle</span>
+                    <span class="ts">2026-09-13 10:46:01</span>
+                </div>
+                <div class="text">ok do it</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:46:07</span>
+                </div>
+                <div class="text">wait</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:46:10</span>
+                </div>
+                <div class="text">i call him</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:46:16</span>
+                </div>
+                <div class="text">ong</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:46:20</span>
+                </div>
+                <div class="text">come vc</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:46:23</span>
+                </div>
+                <div class="text">i call my mother</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1388455055270871144/8f64ea7d37ef71de48d0a84f08e0139e.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#595161;">Dingle</span>
+                    <span class="ts">2026-09-13 10:46:28</span>
+                </div>
+                <div class="text">https://discordapp.com/channels/1377692416613548243/1378490101079736423</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:47:06</span>
+                </div>
+                <div class="text">my mother</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:47:09</span>
+                </div>
+                <div class="text">hes here</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:47:11</span>
+                </div>
+                <div class="text">come</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/542160053549924383/3c684423602a09b2f69e355dba994c52.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e83114;">Jaceey</span>
+                    <span class="ts">2026-09-13 10:47:17</span>
+                </div>
+                <div class="text">vc</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-13 10:57:44</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#00ff00;"><div class="embed-title">✅ PC Check Passed</div><div class="embed-description">PC Check for **Jaceey** has been passed by &lt;@1388455055270871144&gt;.</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-13 10:57:44</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-description">⏳ Saving transcript...</div></div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="footer">
+                Generated by <strong>BPW Force Stream Bot</strong> • 2026-09-13 06:57:45
+            </div>
+        </div>
+    </body>
+    </html>
+    
