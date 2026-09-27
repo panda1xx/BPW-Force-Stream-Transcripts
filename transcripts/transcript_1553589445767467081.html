@@ -1,0 +1,1081 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Transcript – Relaxperc</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            * { margin:0; padding:0; box-sizing:border-box; }
+            body {
+                font-family: 'Inter', sans-serif;
+                background: #0e1a24;
+                color: #d4dce4;
+                padding: 20px;
+                line-height: 1.5;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .container {
+                max-width: 1000px;
+                width: 100%;
+                background: #15222e;
+                border-radius: 16px;
+                padding: 30px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+                border: 1px solid #2a3c4a;
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                padding-bottom: 16px;
+                margin-bottom: 24px;
+                border-bottom: 2px solid #2a3c4a;
+            }
+            .header-left h1 {
+                font-size: 24px;
+                font-weight: 700;
+                color: #f0f4f8;
+                letter-spacing: -0.5px;
+            }
+            .header-left .sub {
+                font-size: 14px;
+                color: #8aa4b4;
+                margin-top: 2px;
+            }
+            .header-right {
+                text-align: right;
+                font-size: 13px;
+                color: #8aa4b4;
+            }
+            .header-right strong {
+                color: #f0f4f8;
+            }
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 12px;
+                background: #0e1a24;
+                padding: 16px 20px;
+                border-radius: 12px;
+                margin-bottom: 24px;
+                border: 1px solid #2a3c4a;
+            }
+            .info-grid .item {
+                display: flex;
+                flex-direction: column;
+            }
+            .info-grid .label {
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.4px;
+                color: #6a8a9a;
+                font-weight: 600;
+            }
+            .info-grid .value {
+                font-weight: 500;
+                color: #f0f4f8;
+                word-break: break-word;
+                margin-top: 2px;
+            }
+            .info-grid .value a {
+                color: #8fc1d9;
+                text-decoration: none;
+            }
+            .info-grid .value a:hover {
+                text-decoration: underline;
+            }
+            .users-section {
+                background: #0e1a24;
+                padding: 12px 20px;
+                border-radius: 12px;
+                margin-bottom: 24px;
+                border: 1px solid #2a3c4a;
+            }
+            .users-section h3 {
+                font-size: 14px;
+                font-weight: 600;
+                color: #8aa4b4;
+                margin-bottom: 6px;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+            }
+            .users-section ul {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 18px;
+            }
+            .users-section ul li {
+                font-size: 13px;
+            }
+            .messages {
+                max-height: 650px;
+                overflow-y: auto;
+                background: #0a161f;
+                border-radius: 12px;
+                padding: 4px 0;
+                border: 1px solid #2a3c4a;
+            }
+            .msg {
+                display: flex;
+                gap: 12px;
+                padding: 10px 16px;
+                transition: background 0.1s;
+                align-items: flex-start;
+            }
+            .msg:hover {
+                background: #1a2c3a;
+            }
+            .avatar-img {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+            .msg-content {
+                flex: 1;
+                min-width: 0;
+            }
+            .msg-header {
+                display: flex;
+                align-items: baseline;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin-bottom: 2px;
+            }
+            .author {
+                font-weight: 600;
+                font-size: 15px;
+            }
+            .ts {
+                font-size: 11px;
+                color: #6a8a9a;
+                font-family: 'JetBrains Mono', monospace;
+            }
+            .text {
+                font-size: 14px;
+                word-break: break-word;
+                color: #d4dce4;
+            }
+            .attachment-image {
+                margin-top: 8px;
+            }
+            .attachment-image img {
+                max-width: 400px;
+                max-height: 300px;
+                border-radius: 8px;
+                border: 1px solid #2a3c4a;
+                object-fit: cover;
+            }
+            .attachment-file {
+                margin-top: 8px;
+                background: #0e1a24;
+                padding: 4px 12px;
+                border-radius: 6px;
+                display: inline-block;
+                border: 1px solid #2a3c4a;
+                font-size: 13px;
+            }
+            .attachment-file a {
+                color: #8fc1d9;
+                text-decoration: none;
+            }
+            .attachment-file a:hover {
+                text-decoration: underline;
+            }
+            .embed {
+                background: #0e1a24;
+                border-left: 4px solid #2b2d31;
+                border-radius: 0 8px 8px 0;
+                padding: 10px 14px;
+                margin-top: 10px;
+                max-width: 600px;
+            }
+            .embed-title {
+                font-weight: 600;
+                color: #f0f4f8;
+                margin-bottom: 4px;
+            }
+            .embed-description {
+                font-size: 13px;
+                color: #d4dce4;
+                margin-bottom: 6px;
+                white-space: pre-wrap;
+            }
+            .embed-field {
+                margin-top: 6px;
+            }
+            .embed-field-inline {
+                display: inline-block;
+                margin-right: 16px;
+                margin-top: 6px;
+                vertical-align: top;
+                min-width: 120px;
+            }
+            .embed-field-name {
+                font-weight: 600;
+                color: #f0f4f8;
+                display: block;
+                font-size: 12px;
+            }
+            .embed-field-value {
+                color: #d4dce4;
+                font-size: 13px;
+            }
+            .embed-footer {
+                margin-top: 8px;
+                font-size: 12px;
+                color: #6a8a9a;
+                border-top: 1px solid #2a3c4a;
+                padding-top: 6px;
+            }
+            .footer {
+                margin-top: 24px;
+                text-align: center;
+                font-size: 12px;
+                color: #6a8a9a;
+                border-top: 1px solid #2a3c4a;
+                padding-top: 16px;
+            }
+            .footer strong {
+                color: #f0f4f8;
+            }
+            @media (max-width: 700px) {
+                .container { padding: 16px; }
+                .header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .header-right {
+                    text-align: left;
+                    margin-top: 8px;
+                }
+                .info-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .msg {
+                    flex-wrap: wrap;
+                }
+                .avatar-img {
+                    width: 28px;
+                    height: 28px;
+                }
+                .embed-field-inline {
+                    display: block;
+                    margin-right: 0;
+                }
+                .attachment-image img {
+                    max-width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="header-left">
+                    <h1>Transcript – Relaxperc</h1>
+                    <div class="sub">BPW - Force Stream • #request-relaxperc</div>
+                </div>
+                <div class="header-right">
+                    <strong>62</strong> messages<br>
+                    <span style="font-size:11px;">2026-09-26 22:57:04</span>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="item">
+                    <span class="label">Server</span>
+                    <span class="value">BPW - Force Stream</span>
+                </div>
+                <div class="item">
+                    <span class="label">Channel</span>
+                    <span class="value">#request-relaxperc</span>
+                </div>
+                <div class="item">
+                    <span class="label">Ticket Owner</span>
+                    <span class="value">cribbled</span>
+                </div>
+                <div class="item">
+                    <span class="label">Panel</span>
+                    <span class="value">Gameplay Request</span>
+                </div>
+                <div class="item">
+                    <span class="label">Match Link</span>
+                    <span class="value"><a href="https://betterplayerwin.com/match/6ab86c6d040a2e9f112f81b2" target="_blank">https://betterplayerwin.com/match/6ab86c…</a></span>
+                </div>
+                <div class="item">
+                    <span class="label">Resolution</span>
+                    <span class="value">Closed</span>
+                </div>
+            </div>
+
+            <div class="users-section">
+                <h3>Users in transcript</h3>
+                <ul>
+                    <li style="color:#8fa146;">BPW Force Stream – 6 messages</li><li style="color:#e57326;">Relaxperc – 48 messages</li><li style="color:#5e4fd4;">Panda – 8 messages</li>
+                </ul>
+            </div>
+
+            <div class="messages">
+                
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-27 02:09:48</span>
+                </div>
+                <div class="text">&lt;@430448268011634688&gt;</div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">Gameplay Request</div><div class="embed-description">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<br>**Requested by**<br>&lt;@430448268011634688&gt;<br><br>**Player**<br>Relaxperc<br><br>**Match Link**<br>https://betterplayerwin.com/match/6ab86c6d040a2e9f112f81b2<br>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div><div class="embed-field"><span class="embed-field-name">Player Added</span><span class="embed-field-value">• &lt;@1482125147908345906&gt;</span></div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-27 02:09:52</span>
+                </div>
+                <div class="text">&lt;@1482125147908345906&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-27 02:09:52</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-title">⚠️ Gameplay Requested</div><div class="embed-description">You have **20 minutes** to submit your gameplay.<br><br>**Failure to submit on time will result in a ban.**<br><br>Our staff team will review your submission and determine whether it is valid.<br><br>*Separate monitor cams must be sent via Google Drive, WeTransfer, or Streamable*</div><div class="embed-footer">BetterPlayerWin</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:10:32</span>
+                </div>
+                <div class="text">uploading</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:10:33</span>
+                </div>
+                <div class="text">vod rn</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:10:38</span>
+                </div>
+                <div class="text">and btw it was hayden on the account ong</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:11:39</span>
+                </div>
+                <div class="text">https://www.twitch.tv/percbyd</div>
+        <div class="embed" style="border-left-color:#2b2d31;"><div class="embed-title">percbyd - Twitch</div><div class="embed-description">percbyd streams live on Twitch! Check out their videos, sign up to chat, and join their community.</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:11:46</span>
+                </div>
+                <div class="text">watch the vod and watch my clips</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:12:33</span>
+                </div>
+                <div class="text">&lt;@430448268011634688&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:12:44</span>
+                </div>
+                <div class="text">https://streamable.com/lzvmnc</div>
+        <div class="embed" style="border-left-color:#2b2d31;"><div class="embed-title">Watch Replay 2026-09-27 03-00-38_Trim | Streamable</div><div class="embed-description">Watch &quot;Replay 2026-09-27 03-00-38_Trim&quot; on Streamable.</div><div class="embed-footer">2026-09-27T02:01:28+00:00</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:12:47</span>
+                </div>
+                <div class="text">https://streamable.com/9j6x2m</div>
+        <div class="embed" style="border-left-color:#2b2d31;"><div class="embed-title">Watch Replay 2026-09-27 02-52-30_Trim | Streamable</div><div class="embed-description">Watch &quot;Replay 2026-09-27 02-52-30_Trim&quot; on Streamable.</div><div class="embed-footer">2026-09-27T01:53:22+00:00</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:12:51</span>
+                </div>
+                <div class="text">https://streamable.com/570hlk</div>
+        <div class="embed" style="border-left-color:#2b2d31;"><div class="embed-title">Watch Replay 2026-09-27 02-31-13_Trim | Streamable</div><div class="embed-description">Watch &quot;Replay 2026-09-27 02-31-13_Trim&quot; on Streamable.</div><div class="embed-footer">2026-09-27T01:46:34+00:00</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:13:13</span>
+                </div>
+                <div class="text">this is hayden btw ong everyone is saying it aswell its obviously hayden qxets is not going 3-5 against me i won but its hayden</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:14:10</span>
+                </div>
+                <div class="text">he was at his house btw hayden</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:15:29</span>
+                </div>
+                <div class="text">https://www.twitch.tv/videos/2885038759</div>
+        <div class="embed" style="border-left-color:#2b2d31;"><div class="embed-title">1v1 2v2 tokens! #betterplayerwin.com - percbyd on Twitch</div><div class="embed-description">percbyd went live on Twitch. Catch up on their Fortnite VOD now.</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:16:29</span>
+                </div>
+                <div class="text">and he said if i tip he marks lose i have clip if u need that aswell</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:19:11</span>
+                </div>
+                <div class="text">https://streamable.com/lofmn7</div>
+        <div class="embed" style="border-left-color:#2b2d31;"><div class="embed-title">Watch Replay 2026-09-27 03-17-12_Trim | Streamable</div><div class="embed-description">Watch &quot;Replay 2026-09-27 03-17-12_Trim&quot; on Streamable.</div><div class="embed-footer">2026-09-27T02:18:45+00:00</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/430448268011634688/6cdec9053f178e52ad868a137f8afe73.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#5e4fd4;">Panda</span>
+                    <span class="ts">2026-09-27 02:19:40</span>
+                </div>
+                <div class="text">perc</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/430448268011634688/6cdec9053f178e52ad868a137f8afe73.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#5e4fd4;">Panda</span>
+                    <span class="ts">2026-09-27 02:19:43</span>
+                </div>
+                <div class="text">timestamp of vod</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/430448268011634688/6cdec9053f178e52ad868a137f8afe73.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#5e4fd4;">Panda</span>
+                    <span class="ts">2026-09-27 02:19:48</span>
+                </div>
+                <div class="text">&lt;@1482125147908345906&gt;</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:20:15</span>
+                </div>
+                <div class="text">GO</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:20:16</span>
+                </div>
+                <div class="text">to</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:20:38</span>
+                </div>
+                <div class="text">48:50</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:20:43</span>
+                </div>
+                <div class="text">thts when it starts</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:20:48</span>
+                </div>
+                <div class="text">and watch the whole thing please</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/430448268011634688/6cdec9053f178e52ad868a137f8afe73.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#5e4fd4;">Panda</span>
+                    <span class="ts">2026-09-27 02:20:50</span>
+                </div>
+                <div class="text">yh ur stuff isnt loading</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:21:09</span>
+                </div>
+                <div class="text">u want me to ss it to u ?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:21:13</span>
+                </div>
+                <div class="text">i posted tjhe vod</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:22:10</span>
+                </div>
+                <div class="text">did it load now ?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:22:22</span>
+                </div>
+                <div class="text"></div>
+        <div class="attachment-image"><a href="https://cdn.discordapp.com/attachments/1553589445767467081/1553592611296780338/image.png?ex=6ab9cf5e&is=6ab87dde&hm=986decc2098274602ae15a53a5c05cd0521b8e5a7851f15dae18012cf6b7f107&" target="_blank"><img src="https://cdn.discordapp.com/attachments/1553589445767467081/1553592611296780338/image.png?ex=6ab9cf5e&is=6ab87dde&hm=986decc2098274602ae15a53a5c05cd0521b8e5a7851f15dae18012cf6b7f107&" alt="image.png"></a></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:23:18</span>
+                </div>
+                <div class="text">and btw let me tell u why its hayden cause qxets wouldnt come close to me 5-3 ong</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:27:20</span>
+                </div>
+                <div class="text">hayden only person that does this if u go on his stream instant u can find this</div>
+        <div class="attachment-file"><a href="https://cdn.discordapp.com/attachments/1553589445767467081/1553593860398125126/Replay_2026-09-27_03-25-29_Trim.mp4?ex=6ab9d088&is=6ab87f08&hm=989860daac10bc45247c882445ab256d7dfaee7676eac49029796266eb3df736&" target="_blank">📎 Replay_2026-09-27_03-25-29_Trim.mp4</a></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-27 02:29:54</span>
+                </div>
+                <div class="text">@everyone</div>
+        <div class="embed" style="border-left-color:#e74c3c;"><div class="embed-title">⏰ Time&#x27;s Up</div><div class="embed-description">The time window has expired.<br><br>**Failure to complete on time will result in a ban.**</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:35:06</span>
+                </div>
+                <div class="text"></div>
+        <div class="attachment-file"><a href="https://cdn.discordapp.com/attachments/1553589445767467081/1553595813349957652/Replay_2026-09-27_03-32-51_Trim.mp4?ex=6ab9d25a&is=6ab880da&hm=c1929b072003f25b9254a9e0f83958cd192e1540ae2b2e53e30c13764dab45da&" target="_blank">📎 Replay_2026-09-27_03-32-51_Trim.mp4</a></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:48:53</span>
+                </div>
+                <div class="text">&lt;@430448268011634688&gt; nothing looks sus have u checked ? everything is normal</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/430448268011634688/6cdec9053f178e52ad868a137f8afe73.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#5e4fd4;">Panda</span>
+                    <span class="ts">2026-09-27 02:49:48</span>
+                </div>
+                <div class="text">why didnt u start game on stream properly</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:04</span>
+                </div>
+                <div class="text">i forgot to but i did load up tho on stream</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/430448268011634688/6cdec9053f178e52ad868a137f8afe73.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#5e4fd4;">Panda</span>
+                    <span class="ts">2026-09-27 02:50:04</span>
+                </div>
+                <div class="text">and u didnt stream desktop</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:08</span>
+                </div>
+                <div class="text">i did</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:09</span>
+                </div>
+                <div class="text">stream</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:10</span>
+                </div>
+                <div class="text">desktop</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:12</span>
+                </div>
+                <div class="text">i just didnt</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:13</span>
+                </div>
+                <div class="text">tab out</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:21</span>
+                </div>
+                <div class="text">cause my keyboard is fucked</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:23</span>
+                </div>
+                <div class="text">so i used</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:24</span>
+                </div>
+                <div class="text">bpw</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:25</span>
+                </div>
+                <div class="text">on my phone</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:32</span>
+                </div>
+                <div class="text">to mark win and talk tot hem</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:33</span>
+                </div>
+                <div class="text">them</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/430448268011634688/6cdec9053f178e52ad868a137f8afe73.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#5e4fd4;">Panda</span>
+                    <span class="ts">2026-09-27 02:50:38</span>
+                </div>
+                <div class="text">good one</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/430448268011634688/6cdec9053f178e52ad868a137f8afe73.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#5e4fd4;">Panda</span>
+                    <span class="ts">2026-09-27 02:50:42</span>
+                </div>
+                <div class="text">not tabbing for 1h</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:46</span>
+                </div>
+                <div class="text">i cant ?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:48</span>
+                </div>
+                <div class="text">yes i didnt tab out ?</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:50:52</span>
+                </div>
+                <div class="text">whts the issue</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:51:01</span>
+                </div>
+                <div class="text">im still playing on stream and did i do anything sus</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:51:04</span>
+                </div>
+                <div class="text">his clips are ass</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:51:09</span>
+                </div>
+                <div class="text">and btw hayden is on his account</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:51:14</span>
+                </div>
+                <div class="text">watch the clips ong</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:51:19</span>
+                </div>
+                <div class="text">is him</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1482125147908345906/25420c1f7943dd31c0a88f9981bc82bd.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#e57326;">Relaxperc</span>
+                    <span class="ts">2026-09-27 02:51:22</span>
+                </div>
+                <div class="text">haydne</div>
+        
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#1e2b36;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-27 02:57:04</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#6c7a89;"><div class="embed-title">Request Closed – Relaxperc</div><div class="embed-description">Closed by &lt;@1455256698699649147&gt;</div></div>
+            </div>
+        </div>
+        
+        <div class="msg" style="background:#16212b;">
+            <img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" class="avatar-img" alt="Avatar">
+            <div class="msg-content">
+                <div class="msg-header">
+                    <span class="author" style="color:#8fa146;">BPW Force Stream</span>
+                    <span class="ts">2026-09-27 02:57:04</span>
+                </div>
+                <div class="text"></div>
+        <div class="embed" style="border-left-color:#1500ff;"><div class="embed-description">⏳ Saving transcript...</div></div>
+            </div>
+        </div>
+        
+            </div>
+
+            <div class="footer">
+                Generated by <strong>BPW Force Stream Bot</strong> • 2026-09-26 22:57:04
+            </div>
+        </div>
+    </body>
+    </html>
+    
