@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transcript - I2hy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0f1c; --surface:#111a2e; --surface2:#0d1526; --line:#1f2b45; --line2:#17223a;
+  --text:#d7e0ef; --muted:#8696b3; --faint:#5c6d8a; --heading:#f3f6fc;
+  --accent:#4d5bff; --accent2:#7a86ff;
+  --ok:#34d27b; --bad:#f2555a; --neutral:#8fa0bd;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{color-scheme:dark;scroll-behavior:smooth}
+body{
+  font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  background:var(--bg);
+  background-image:
+    radial-gradient(1100px 420px at 50% -160px,rgba(77,91,255,.20),transparent 70%),
+    radial-gradient(700px 300px at 100% 100%,rgba(122,134,255,.08),transparent 70%);
+  background-repeat:no-repeat;
+  color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased;
+  padding:36px 16px 56px;
+}
+a{color:#8fb4ff;text-decoration:none;transition:color .15s}
+a:hover{color:#c7d6ff;text-decoration:underline}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+
+/* ---------- hero ---------- */
+.hero{
+  background:linear-gradient(180deg,var(--surface),var(--surface2));
+  border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative;
+  box-shadow:0 12px 32px rgba(0,0,0,.28);
+}
+.hero::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--status);box-shadow:0 0 24px var(--status)}
+.hero-top{padding:28px 32px 24px 36px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:18px;color:var(--muted);font-size:12.5px;font-weight:500;letter-spacing:.02em;text-transform:uppercase}
+.logo-img{
+  width:34px;height:34px;border-radius:8px;object-fit:contain;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+}
+h1{font:700 34px/1.15 'Montserrat',sans-serif;letter-spacing:-.025em;color:var(--heading)}
+.sub{margin-top:8px;color:var(--muted);font-size:14px}
+.sub b{color:var(--text);font-weight:600}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;
+  font-size:13px;font-weight:600;border:1px solid;white-space:nowrap;letter-spacing:.02em;
+}
+.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor}
+.pill.ok{color:var(--ok);background:rgba(52,210,123,.09);border-color:rgba(52,210,123,.35)}
+.pill.bad{color:var(--bad);background:rgba(242,85,90,.09);border-color:rgba(242,85,90,.35)}
+.pill.neutral{color:var(--neutral);background:rgba(143,160,189,.09);border-color:rgba(143,160,189,.3)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.stat{padding:16px 32px 18px 36px;border-right:1px solid var(--line);transition:background .15s}
+.stat:last-child{border-right:0}
+.stat:hover{background:rgba(255,255,255,.015)}
+.stat .n{font:700 24px 'Montserrat',sans-serif;color:var(--heading);letter-spacing:-.02em}
+.stat .l{font-size:12.5px;color:var(--muted);margin-top:1px;letter-spacing:.02em}
+
+/* ---------- cards ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 26px}
+.card h2{font:600 15px 'Montserrat',sans-serif;color:var(--heading);margin-bottom:16px;letter-spacing:.02em;text-transform:uppercase}
+.details{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px 28px}
+.d .k{font-size:11.5px;color:var(--faint);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.d .v{font-size:14.5px;color:var(--heading);font-weight:500;word-break:break-word}
+.d.wide{grid-column:1/-1}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  display:flex;align-items:center;gap:9px;background:var(--surface2);border:1px solid var(--line);
+  border-radius:999px;padding:5px 14px 5px 5px;transition:border-color .15s, transform .15s;
+}
+.chip:hover{border-color:var(--accent);transform:translateY(-1px)}
+.chip img{width:26px;height:26px;border-radius:50%;object-fit:cover;background:var(--line)}
+.chip .cn{font-size:13.5px;font-weight:600;letter-spacing:-.005em}
+.chip .cc{font-size:12px;color:var(--muted);background:var(--line2);border-radius:999px;padding:1px 8px}
+
+/* ---------- chat ---------- */
+.chat{background:var(--surface2);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.toolbar{
+  position:sticky;top:0;z-index:5;display:flex;gap:10px;align-items:center;padding:12px 16px;
+  background:rgba(13,21,38,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.search{
+  flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);color:var(--text);
+  border-radius:10px;padding:9px 13px;font:inherit;font-size:13.5px;outline:none;transition:border-color .15s, box-shadow .15s;
+}
+.search::placeholder{color:var(--faint)}
+.search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(77,91,255,.2)}
+.count{font-size:12.5px;color:var(--muted);white-space:nowrap}
+.btn{
+  background:var(--surface);border:1px solid var(--line);color:var(--text);border-radius:10px;
+  padding:8px 13px;font:500 13px 'Montserrat',sans-serif;cursor:pointer;white-space:nowrap;transition:border-color .15s, color .15s;
+}
+.btn:hover{border-color:var(--accent);color:#fff}
+.btn:focus-visible,.search:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.chat-body{padding:4px 0 16px}
+
+.divider{display:flex;align-items:center;gap:14px;margin:22px 22px 8px;color:var(--faint);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.msg{display:flex;gap:14px;padding:2px 24px 2px 18px;position:relative;transition:background .12s}
+.msg.first{margin-top:14px;padding-top:4px}
+.msg:hover{background:rgba(255,255,255,.028)}
+.gutter{width:40px;flex-shrink:0;display:flex;justify-content:center}
+.avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;background:var(--line)}
+.hover-time{font:500 11px 'Montserrat',sans-serif;color:var(--faint);opacity:0;padding-top:6px;transition:opacity .15s;letter-spacing:0.02em}
+.msg:hover .hover-time{opacity:1}
+.mbody{flex:1;min-width:0}
+.mhead{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.author{font-weight:600;font-size:15px;letter-spacing:-.005em}
+.tag{font-size:10px;font-weight:700;background:var(--accent);color:#fff;border-radius:4px;padding:1px 6px;transform:translateY(-1px);letter-spacing:.04em}
+.ts{font:500 12px 'Montserrat',sans-serif;color:var(--faint);letter-spacing:0.02em;}
+.text{font-size:14.5px;overflow-wrap:anywhere;word-break:break-word}
+.text.muted{color:var(--faint);font-style:italic}
+.text strong{color:var(--heading)}
+.mention{background:rgba(77,91,255,.18);color:#b7beff;border-radius:4px;padding:0 4px;font-weight:500}
+code.inline{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font:12.5px 'JetBrains Mono',monospace}
+pre.codeblock{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:6px 0;overflow-x:auto;font:12.5px/1.6 'JetBrains Mono',monospace;max-width:640px}
+
+/* V2 Header styling */
+.text .msg-title{font-size:16px;font-weight:700;color:var(--heading);margin:8px 0 4px;display:block;}
+.text .msg-subtitle{font-size:15px;font-weight:600;color:var(--heading);margin:6px 0 2px;display:block;}
+
+.att-img{margin-top:8px}
+.att-img img{max-width:420px;max-height:320px;width:auto;border-radius:12px;border:1px solid var(--line);cursor:zoom-in;display:block;object-fit:cover;transition:transform .15s, border-color .15s}
+.att-img img:hover{transform:scale(1.01);border-color:var(--accent)}
+.att-file{margin-top:8px;display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:13.5px;transition:border-color .15s}
+.att-file:hover{border-color:var(--accent);text-decoration:none}
+
+.embed{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:4px 12px 12px 4px;padding:12px 16px;margin-top:8px;max-width:620px}
+.e-title{font-weight:600;color:var(--heading);margin-bottom:4px}
+.e-desc{font-size:13.5px;color:var(--text)}
+.e-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 18px;margin-top:10px}
+.e-field.full{grid-column:1/-1}
+.e-fname{font-size:12.5px;font-weight:600;color:var(--heading)}
+.e-fval{font-size:13.5px;color:var(--text)}
+.e-foot{margin-top:10px;padding-top:8px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+
+.hide{display:none!important}
+.foot{text-align:center;color:var(--faint);font-size:12.5px;padding-top:10px;line-height:1.7}
+.foot b{color:var(--muted);font-weight:600}
+.tz-note{display:block;margin-top:2px;font-size:11.5px}
+.tz-note b{color:var(--muted)}
+
+.lightbox{position:fixed;inset:0;background:rgba(4,8,16,.9);display:none;align-items:center;justify-content:center;z-index:50;cursor:zoom-out;padding:24px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:100%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+
+@media (max-width:760px){
+  body{padding:16px 10px 40px}
+  .hero-top{padding:22px 20px 18px 24px}
+  h1{font-size:26px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{padding:14px 20px 14px 24px}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .card{padding:18px}
+  .msg{padding-left:12px;padding-right:12px;gap:10px}
+  .gutter{width:34px}.avatar{width:34px;height:34px}
+  .att-img img{max-width:100%}
+  .btn.jump{display:none}
+}
+@media print{
+  body{background:#fff;color:#000;padding:0}
+  .toolbar,.lightbox{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero" style="--status:#34d27b">
+    <div class="hero-top">
+      <div>
+        <div class="brand">
+          <img class="logo-img" src="https://cdn.discordapp.com/attachments/1116799428142059530/1455596993421512917/bpw20force20stream.png?ex=6af49656&is=6af344d6&hm=2964234957d6162323b221bf8507361de327b86bdb2b1dce62138139be9a7102&" alt="BPW Logo">
+          <span>PC Check Request transcript</span>
+        </div>
+        <h1>I2hy</h1>
+        <div class="sub"><b>BPW - Force Stream</b> &nbsp;/&nbsp; #pc-check-ishy</div>
+      </div>
+      <span class="pill ok">Passed</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">30</div><div class="l">Messages</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">Participants</div></div>
+      <div class="stat"><div class="n">3h 24m</div><div class="l">Duration</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">Attachments</div></div>
+    </div>
+  </header>
+
+  <section class="card">
+    <h2>Ticket Details</h2>
+    <div class="details"><div class="d"><div class="k">Player's Site Name</div><div class="v">I2hy</div></div><div class="d"><div class="k">Ticket Type</div><div class="v">PC Check Request</div></div><div class="d"><div class="k">Requested By</div><div class="v">onizuke</div></div><div class="d"><div class="k">Handled By</div><div class="v">onizuke</div></div><div class="d"><div class="k">Linked Discord Member</div><div class="v">Ishy</div></div><div class="d"><div class="k">Result</div><div class="v">Passed PC Check</div></div><div class="d"><div class="k">Opened</div><div class="v"><span data-utc="2026-11-12T16:15:00Z">12 Nov 2026, 16:15 UTC</span></div></div></div>
+  </section>
+
+  <section class="card">
+    <h2>Participants</h2>
+    <div class="chips"><div class="chip"><img src="https://cdn.discordapp.com/avatars/919148077762371655/7ec1c59c6fd9e02db867747b0f4c5c2a.png?size=1024" alt="" loading="lazy"><span class="cn" style="color:#1ee9ac">onizuke</span><span class="cc">14</span></div><div class="chip"><img src="https://cdn.discordapp.com/avatars/1436130503441911973/17c6379b2c796972d3760c1145297dd8.png?size=1024" alt="" loading="lazy"><span class="cn" style="color:#2ecc71">Ishy</span><span class="cc">13</span></div><div class="chip"><img src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" alt="" loading="lazy"><span class="cn" style="color:#fdd63b">BPW Force Stream</span><span class="cc">3</span></div></div>
+  </section>
+
+  <section class="chat">
+    <div class="toolbar">
+      <input id="q" class="search" type="search" placeholder="Search this transcript" autocomplete="off" aria-label="Search this transcript">
+      <span id="count" class="count"></span>
+      <button class="btn jump" id="jump-top" type="button">Top</button>
+      <button class="btn jump" id="jump-end" type="button">Latest</button>
+    </div>
+    <div class="chat-body"><div class="divider"><span class="divider-date" data-utc="2026-11-12T16:15:00Z">Thursday, 12 November 2026</span></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#fdd63b">BPW Force Stream</span><span class="tag">BOT</span><span class="ts" data-utc="2026-11-12T16:15:00Z">2026-11-12 16:15:00 UTC</span></div><div class="text muted">Interactive message (buttons / components)</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/919148077762371655/7ec1c59c6fd9e02db867747b0f4c5c2a.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#1ee9ac">onizuke</span><span class="ts" data-utc="2026-11-12T16:15:07Z">2026-11-12 16:15:07 UTC</span></div><div class="text"><span class="mention">@Ishy</span></div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/1436130503441911973/17c6379b2c796972d3760c1145297dd8.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#2ecc71">Ishy</span><span class="ts" data-utc="2026-11-12T16:15:07Z">2026-11-12 16:15:07 UTC</span></div><div class="text">yo</div></div></div><div class="msg"><div class="gutter"><span class="hover-time">16:15</span></div><div class="mbody"><div class="att-img"><img class="zoom" src="https://cdn.discordapp.com/attachments/1570471985362767912/1570472091457687644/IMG_0784.jpg?ex=6af7379c&amp;is=6af5e61c&amp;hm=a2106c391f26971c2d5366a7997d7bd77b7f5df3f64cdef7ef655f838747f5ff&amp;" data-full="https://cdn.discordapp.com/attachments/1570471985362767912/1570472091457687644/IMG_0784.jpg?ex=6af7379c&amp;is=6af5e61c&amp;hm=a2106c391f26971c2d5366a7997d7bd77b7f5df3f64cdef7ef655f838747f5ff&amp;" alt="IMG_0784.jpg" loading="lazy"></div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/919148077762371655/7ec1c59c6fd9e02db867747b0f4c5c2a.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#1ee9ac">onizuke</span><span class="ts" data-utc="2026-11-12T16:15:24Z">2026-11-12 16:15:24 UTC</span></div><div class="text">Are you available</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/1436130503441911973/17c6379b2c796972d3760c1145297dd8.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#2ecc71">Ishy</span><span class="ts" data-utc="2026-11-12T16:15:27Z">2026-11-12 16:15:27 UTC</span></div><div class="text">coming home rn</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/919148077762371655/7ec1c59c6fd9e02db867747b0f4c5c2a.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#1ee9ac">onizuke</span><span class="ts" data-utc="2026-11-12T16:15:29Z">2026-11-12 16:15:29 UTC</span></div><div class="text">Right now</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/1436130503441911973/17c6379b2c796972d3760c1145297dd8.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#2ecc71">Ishy</span><span class="ts" data-utc="2026-11-12T16:15:36Z">2026-11-12 16:15:36 UTC</span></div><div class="text">ill ping u once im home</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/919148077762371655/7ec1c59c6fd9e02db867747b0f4c5c2a.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#1ee9ac">onizuke</span><span class="ts" data-utc="2026-11-12T16:15:36Z">2026-11-12 16:15:36 UTC</span></div><div class="text">Ok</div></div></div><div class="msg"><div class="gutter"><span class="hover-time">16:15</span></div><div class="mbody"><div class="text">Alright</div></div></div><div class="msg"><div class="gutter"><span class="hover-time">16:16</span></div><div class="mbody"><div class="text"><a href="https://betterplayerwin.com/match/6af52c6e7c2116a1ad27b039" target="_blank" rel="noopener noreferrer">https://betterplayerwin.com/match/6af52c6e7c2116a1ad27b039</a></div><div class="embed" style="border-left-color:var(--line);"><div class="e-title">Competitive Gaming Tournaments – BetterPlayerWin</div><div class="e-desc">Play Fortnite, FC25, Clash Royale, and Valorant on BetterPlayerWin! Join eSports tournaments and compete on PS4, Xbox, and PC. play tokens.</div></div></div></div><div class="msg"><div class="gutter"><span class="hover-time">16:16</span></div><div class="mbody"><div class="text">For this match</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/1436130503441911973/17c6379b2c796972d3760c1145297dd8.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#2ecc71">Ishy</span><span class="ts" data-utc="2026-11-12T16:16:21Z">2026-11-12 16:16:21 UTC</span></div><div class="text">ye ik</div></div></div><div class="msg"><div class="gutter"><span class="hover-time">16:16</span></div><div class="mbody"><div class="text">dw</div></div></div><div class="msg"><div class="gutter"><span class="hover-time">16:16</span></div><div class="mbody"><div class="text">im coming home now</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/919148077762371655/7ec1c59c6fd9e02db867747b0f4c5c2a.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#1ee9ac">onizuke</span><span class="ts" data-utc="2026-11-12T16:18:07Z">2026-11-12 16:18:07 UTC</span></div><div class="text">ok</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/1436130503441911973/17c6379b2c796972d3760c1145297dd8.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#2ecc71">Ishy</span><span class="ts" data-utc="2026-11-12T17:30:53Z">2026-11-12 17:30:53 UTC</span></div><div class="text">yo</div></div></div><div class="msg"><div class="gutter"><span class="hover-time">17:30</span></div><div class="mbody"><div class="text"><span class="mention">@onizuke</span></div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/919148077762371655/7ec1c59c6fd9e02db867747b0f4c5c2a.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#1ee9ac">onizuke</span><span class="ts" data-utc="2026-11-12T17:41:17Z">2026-11-12 17:41:17 UTC</span></div><div class="text">Im out</div></div></div><div class="msg"><div class="gutter"><span class="hover-time">17:41</span></div><div class="mbody"><div class="text">Right now</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/1436130503441911973/17c6379b2c796972d3760c1145297dd8.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#2ecc71">Ishy</span><span class="ts" data-utc="2026-11-12T19:02:05Z">2026-11-12 19:02:05 UTC</span></div><div class="text">sn</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/919148077762371655/7ec1c59c6fd9e02db867747b0f4c5c2a.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#1ee9ac">onizuke</span><span class="ts" data-utc="2026-11-12T19:10:20Z">2026-11-12 19:10:20 UTC</span></div><div class="text"><span class="mention">@Ishy</span></div></div></div><div class="msg"><div class="gutter"><span class="hover-time">19:10</span></div><div class="mbody"><div class="text">send anydesk</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/1436130503441911973/17c6379b2c796972d3760c1145297dd8.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#2ecc71">Ishy</span><span class="ts" data-utc="2026-11-12T19:14:41Z">2026-11-12 19:14:41 UTC</span></div><div class="text">1106295465</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/919148077762371655/7ec1c59c6fd9e02db867747b0f4c5c2a.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#1ee9ac">onizuke</span><span class="ts" data-utc="2026-11-12T19:14:51Z">2026-11-12 19:14:51 UTC</span></div><div class="text">accept</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/1436130503441911973/17c6379b2c796972d3760c1145297dd8.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#2ecc71">Ishy</span><span class="ts" data-utc="2026-11-12T19:37:54Z">2026-11-12 19:37:54 UTC</span></div><div class="text">yo</div></div></div><div class="msg"><div class="gutter"><span class="hover-time">19:38</span></div><div class="mbody"><div class="text">i passed right?</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/919148077762371655/7ec1c59c6fd9e02db867747b0f4c5c2a.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#1ee9ac">onizuke</span><span class="ts" data-utc="2026-11-12T19:38:24Z">2026-11-12 19:38:24 UTC</span></div><div class="text">yep</div></div></div><div class="msg first"><div class="gutter"><img class="avatar" src="https://cdn.discordapp.com/avatars/1526806548385501224/f07909342b70be237a33df62bf81e426.png?size=1024" alt="" loading="lazy"></div><div class="mbody"><div class="mhead"><span class="author" style="color:#fdd63b">BPW Force Stream</span><span class="tag">BOT</span><span class="ts" data-utc="2026-11-12T19:39:38Z">2026-11-12 19:39:38 UTC</span></div><div class="text muted">Interactive message (buttons / components)</div></div></div><div class="msg"><div class="gutter"><span class="hover-time">19:39</span></div><div class="mbody"><div class="embed" style="border-left-color:#1500ff;"><div class="e-desc">⏳ Saving transcript...</div></div></div></div></div>
+  </section>
+
+  <div class="foot">
+    Generated by <b>BPW Force Stream Bot</b> on <span data-utc="2026-11-12T14:39:39Z">12 Nov 2026, 14:39 UTC</span>
+    <span class="tz-note">All times shown in <b id="tz">your local timezone</b></span>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox"><img alt=""></div>
+<script>
+(function(){
+  function fmtDateTime(iso){
+    var d=new Date(iso);
+    if(isNaN(d))return null;
+    try{
+      return d.toLocaleString(undefined,{
+        year:'numeric',month:'short',day:'2-digit',
+        hour:'2-digit',minute:'2-digit',second:'2-digit'
+      });
+    }catch(e){return d.toUTCString();}
+  }
+  function fmtDate(iso){
+    var d=new Date(iso);
+    if(isNaN(d))return null;
+    try{
+      return d.toLocaleDateString(undefined,{
+        weekday:'long',year:'numeric',month:'long',day:'numeric'
+      });
+    }catch(e){return d.toDateString();}
+  }
+
+  // Convert every [data-utc] element to the viewer's local timezone
+  document.querySelectorAll('[data-utc]').forEach(function(el){
+    var iso=el.getAttribute('data-utc');
+    if(!iso)return;
+    var isDate=el.classList.contains('divider-date');
+    var out=isDate?fmtDate(iso):fmtDateTime(iso);
+    if(out)el.textContent=out;
+    if(!isDate&&el.classList.contains('ts'))el.title=iso;
+  });
+
+  // Hide consecutive duplicate date dividers (may appear after timezone conversion)
+  var lastDividerText=null;
+  document.querySelectorAll('.divider').forEach(function(div){
+    var span=div.querySelector('.divider-date');
+    if(!span)return;
+    var t=span.textContent.trim();
+    if(t===lastDividerText){div.style.display='none';}
+    else{lastDividerText=t;}
+  });
+
+  // Surface the viewer's timezone in the footer
+  var tzEl=document.getElementById('tz');
+  if(tzEl){
+    try{
+      var tz=Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if(tz)tzEl.textContent=tz.replace(/_/g,' ');
+    }catch(e){}
+  }
+
+  // Search
+  var q=document.getElementById('q'),count=document.getElementById('count');
+  var msgs=[].slice.call(document.querySelectorAll('.msg'));
+  var dividers=[].slice.call(document.querySelectorAll('.divider'));
+  if(q){
+    q.addEventListener('input',function(){
+      var v=q.value.trim().toLowerCase(),shown=0;
+      msgs.forEach(function(m){
+        var hit=!v||m.textContent.toLowerCase().indexOf(v)>-1;
+        m.classList.toggle('hide',!hit);
+        if(hit)shown++;
+      });
+      dividers.forEach(function(d){d.classList.toggle('hide',!!v)});
+      count.textContent=v?(shown+(shown===1?' match':' matches')):'';
+    });
+  }
+
+  var jt=document.getElementById('jump-top');
+  if(jt)jt.onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
+  var je=document.getElementById('jump-end');
+  if(je)je.onclick=function(){window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})};
+
+  // Lightbox
+  var lb=document.getElementById('lightbox'),lbi=lb?lb.querySelector('img'):null;
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    if(t.classList&&t.classList.contains('zoom')&&lbi){
+      lbi.src=t.getAttribute('data-full');
+      lb.classList.add('open');
+    }else if(lb&&lb.classList.contains('open')){
+      lb.classList.remove('open');
+      lbi.src='';
+    }
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&lb){lb.classList.remove('open');if(lbi)lbi.src='';}
+  });
+})();
+</script>
+</body>
+</html>
